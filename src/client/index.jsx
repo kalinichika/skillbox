@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import ReactDOM from "@hot-loader/react-dom";
 import Header from "../shared/Header";
 
 window.addEventListener("load", () => {
