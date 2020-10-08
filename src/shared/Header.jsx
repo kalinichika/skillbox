@@ -1,21 +1,25 @@
 import { hot } from "react-hot-loader/root";
-import * as React from "react";
-import "./Header.css";
+import React from "react";
+import styles from "./Header.css";
+
 function HeaderComponent() {
-  // const [state, setState] = React.useState(false);
   return (
     <header>
-      <h2 className={'text'}>Skillbox lessons started!</h2>
-      {/* <button onClick={() => setState(!state)}> */}
-      {/* {state ? "hide" : "show"} */}
+      <h2 className={styles["text-salmon-color"]}>Skillbox lessons started!</h2>
+      {/* <button */}
+      {/* className={styles.button} */}
+      {/* onClick={() => */}
+      {/* this.setState((prev) => ({ textIsShow: !prev.textIsShow })) */}
+      {/* } */}
+      {/* > */}
+      {/* {textIsShow ? "hide" : "show"} */}
       {/* </button> */}
-      {/* {state && <h3> Here i'm</h3>} */}
-      <p className={'text'}>
+      {/* {textIsShow && <h3> Here i'm</h3>} */}
+      <p className={styles["text-mint-color"]}>
         It replace code without page reloading
       </p>
     </header>
   );
 }
-
 // export default HeaderComponent;
 export default hot(HeaderComponent);

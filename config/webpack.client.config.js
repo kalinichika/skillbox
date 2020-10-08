@@ -25,6 +25,7 @@ module.exports = {
     extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
     alias: {
       // "react-dom": IS_DEV ? "@hot-loadеr/react-dom" : "react-dom",
+      "react-dom": "@hot-loadеr/react-dom",
     },
   },
   entry: [

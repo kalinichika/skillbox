@@ -1,6 +1,6 @@
-.text {
-    color: salmon !important;
+.text-salmon-color {
+    color: red !important;
 }
-.text-color-mint {
+.text-mint-color {
     color: mediumaquamarine;
 }
