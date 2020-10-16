@@ -1,8 +1,8 @@
 import { hot } from "react-hot-loader/root";
 import React from "react";
-import styles from "./Header.css";
+import styles from "./App.css";
 
-function HeaderComponent() {
+function AppComponent() {
   return (
     <header>
       <h2 className={styles["text-salmon-color"]}>Skillbox lessons started!</h2>
@@ -21,5 +21,5 @@ function HeaderComponent() {
     </header>
   );
 }
-// export default HeaderComponent;
-export default hot(HeaderComponent);
+// export default AppComponent;
+export const App = hot(AppComponent);

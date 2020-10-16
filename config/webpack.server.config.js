@@ -1,4 +1,5 @@
 const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const nodeExternals = require("webpack-node-externals");
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -18,7 +19,7 @@ module.exports = {
     rules: [
       {
         test: /\.[tj]sx?$/,
-        use: ["ts-loader"],
+        loader: "ts-loader",
       },
       {
         test: /\.css$/,
@@ -40,4 +41,5 @@ module.exports = {
   optimization: {
     minimize: false,
   },
+  plugins: [new CleanWebpackPlugin()],
 };

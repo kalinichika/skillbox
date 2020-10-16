@@ -24,8 +24,7 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
     alias: {
-      // "react-dom": IS_DEV ? "@hot-loadеr/react-dom" : "react-dom",
-      "react-dom": "@hot-loadеr/react-dom",
+      "react-dom": IS_DEV ? "@hot-loader/react-dom" : "react-dom",
     },
   },
   entry: [
@@ -36,7 +35,7 @@ module.exports = {
     rules: [
       {
         test: /\.[tj]sx?$/,
-        use: ["ts-loader"],
+        loader: "ts-loader",
       },
       {
         test: /\.css$/,
@@ -58,5 +57,5 @@ module.exports = {
   devtool: setupDevtool(),
   plugins: IS_DEV
     ? [new CleanWebpackPlugin(), new HotModuleReplacementPlugin()]
-    : [],
+    : [new CleanWebpackPlugin()],
 };

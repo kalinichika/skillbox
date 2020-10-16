@@ -1,14 +1,14 @@
 import express from "express";
-import * as ReactDOM from "react-dom/server";
-import Header from "../shared/Header.jsx"
-import indexTemplate from "./indexTemplate";
+import ReactDOM from "react-dom/server";
+import { App } from "../App";
+import { indexTemplate } from "./indexTemplate";
 
 const app = express();
 
 app.use("/static", express.static("./dist/client"));
 
 app.get("/", (req, res) => {
-  res.send(indexTemplate(ReactDOM.renderToString(Header()));
+  res.send(indexTemplate(ReactDOM.renderToString(App())));
 });
 
 app.listen(3000, () => {

@@ -1,4 +1,4 @@
-export default (content) => `
+export const indexTemplate = (content) => `
 <!DOCTYPE html>
 <html lang="ru">
   <head>

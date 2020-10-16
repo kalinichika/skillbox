@@ -14,7 +14,7 @@ hmrServer.use(
     publicPath: webpackClientConfig.output.publicPath,
     serverSideRender: true,
     noInfo: true,
-    watchOptions: {
+    watchOption: {
       ignore: /dist/,
     },
     writeToDisk: true,
@@ -29,7 +29,7 @@ hmrServer.use(
 );
 
 hmrServer.listen(3001, () => {
-  console.log("HMR server successful started");
+  console.log("HMR server started on http://localhost:3001");
 });
 
 const compiler = webpack(webpackServerConfig);
@@ -45,12 +45,12 @@ compiler.run((err) => {
     }
     console.log("Compilation was successfully");
   });
+});
 
-  nodemon({
-    script: path.resolve(__dirname, "../dist/server/server"),
-    watch: [
-      path.resolve(__dirname, "../dist/server"),
-      path.resolve(__dirname, "../dist/client"),
-    ],
-  });
+nodemon({
+  script: path.resolve(__dirname, "../dist/server/server.js"),
+  watch: [
+    path.resolve(__dirname, "../dist/server"),
+    path.resolve(__dirname, "../dist/client"),
+  ],
 });
