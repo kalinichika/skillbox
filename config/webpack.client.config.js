@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEV = NODE_ENV === "development";
 const IS_PROD = NODE_ENV === "production";
+const GLOBAL_CSS_REGEXP = /\.global\.css$/;
 
 /**
  * Генерирует настройку для devtool в зависимости от NODE_ENV
@@ -51,6 +52,11 @@ module.exports = {
             },
           },
         ],
+        exclude: GLOBAL_CSS_REGEXP,
+      },
+      {
+        test: GLOBAL_CSS_REGEXP,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
