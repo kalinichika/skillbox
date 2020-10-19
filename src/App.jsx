@@ -1,14 +1,16 @@
 import { hot } from "react-hot-loader/root";
 import React from "react";
-import { Exemple } from "./exemple/Exemple.m4.l3";
-import "./App.css";
+import "./main.global.css";
+import { Layout } from "./shared/Layout";
+import { Header } from "./shared/Header";
 
 class AppComponent extends React.Component {
   render() {
     return (
-      <div>
-        <Exemple />
-      </div>
+      <Layout>
+        <Header />
+        {/* <Content/> */}
+      </Layout>
     );
   }
 }
