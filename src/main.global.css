@@ -5,10 +5,10 @@
     --orange: #CC6633;
     --green:  #A4CC33;
     --white:  #ffffff;
-    --greyf4: #f4f4f4;
+    --greyF4: #f4f4f4;
     --greyF3: #f3f3f3;
-    --greyd9: #d9d9d9;
-    --greyc4: #c4c4c4;
+    --greyD9: #d9d9d9;
+    --greyC4: #c4c4c4;
     --grey99: #999999;
     --grey66: #666666;
 }
@@ -27,4 +27,21 @@ body {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
 }
