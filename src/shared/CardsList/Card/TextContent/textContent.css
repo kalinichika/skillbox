@@ -1,0 +1,107 @@
+.textContent {
+  display: flex;
+  flex-wrap: row wrap;
+  flex-direction: column;
+  padding: 22px 20px 13px;
+}
+
+.metaData {
+  display: flex;
+  flex-wrap: row nowrap;
+  align-items: center;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.userLink {
+  font-size: 14px;;
+  display: flex;
+  flex-wrap: row nowrap;
+  align-items: center;
+  height: 20px;
+  padding: 0 6px 0 0;
+}
+
+.avatar {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userName {
+  padding-left: 6px;
+  color: var(--orange);
+}
+
+.createdAt,
+.createdAt * {
+  color: var(--grey99);
+  font-size: 14px;;
+}
+
+@media all and (max-width: 1024px) {
+  .publishedLabel {
+    display: none;
+  }
+}
+
+.title {
+  font-size: 18px;
+  line-height: 19px;
+  font-weight: normal;
+  margin: 0;
+  padding: 7px 0 0;
+}
+
+.postLink {
+  max-height: 40px;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-line-orient: vertical;
+  display: -webkit-box;
+}
+
+
+@media all and (min-width: 1024px) {
+  .textContent {
+    order: 2;
+    width: calc(100% - 320px);
+  }
+
+  .metaData {
+    flex-wrap: row-reverse nowrap;
+    order: 2;
+    margin-top: 8px;
+  }
+
+  .title {
+    order: 1;
+    font-size: 18px;
+    height: 26px;
+    overflow: hidden;
+  }
+
+  .userLink {
+    order: 2;
+  }
+
+  .userName {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .avatar {
+    width: 24px;
+    height: 24px;
+    margin: 0 2px;
+  }
+
+  .createdAt {
+    order: 1;
+    font-size: 14px;
+    line-height: 16px;
+    margin-left: 0px;
+  }
+
+}
