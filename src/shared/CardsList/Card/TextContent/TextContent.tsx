@@ -1,25 +1,40 @@
 import React from 'react';
 import styles from './textContent.css';
 
-export function TextContent() {
+interface ITextContent {
+  url: string,
+  time: Date,
+  title: string,
+  author: {
+    name: string,
+    avatar: string,
+    href: string,
+  },
+}
+
+export function TextContent({author, time = new Date(), title, url}: ITextContent) {
+  const {name, avatar, href} = author;
   return (
       <div className={styles.textContent}>
         <div className={styles.metaData}>
           <div className={styles.userLink}>
-            <img className={styles.avatar}
-            src='https://cdn.dribbble.com/users/24158/screenshots/3990796/batman.jpg'
-            alt='avatar'/>
-            <a href='#user-url' className={styles.userName}>
-              Виктория Калинина 
+            <img 
+              className={styles.avatar}
+              src={avatar}
+              alt='avatar'/>
+            <a href={href} className={styles.userName}>
+              {name} 
             </a>
           </div>
           <span className={styles.createdAt}>
-            <span className={styles.publishedLabel}> опубликовано </span>
-            4 часа назад</span>
+            <span className={styles.publishedLabel}> опубликовано 
+            </span>
+            {time.toString()}
+          </span>
         </div>
         <h2 className={styles.title}>
-          <a href='#post-url' className={styles.postLink}>
-            Следует отметить, что новая модель организационной деятельности Следует отметить, что новая модель организационной деятельности 
+          <a href={url} className={styles.postLink}>
+            {title}
           </a>
         </h2>
       </div>

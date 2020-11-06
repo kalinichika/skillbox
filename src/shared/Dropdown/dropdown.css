@@ -8,9 +8,22 @@
 }
 
 .list {
+  z-index: 1;
   position: absolute;
-  left: 0;
+  right: 8px;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: max-content;
+  font-size: 15px;
+  line-height: 17px;
+  background-color: var(--greyF4);
+  border-radius: 2px;
+  border: 1px solid var(--greyC4);
+}
+.list div,
+.list a {
+  padding: 3px 4px;
+  cursor: default;
+}
+.list:nth-child() {
+  border-bottom: 1px solid var(--greyC4);
 }

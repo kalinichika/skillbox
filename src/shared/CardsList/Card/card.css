@@ -6,172 +6,11 @@
   margin: 14px;
   padding: 14px;
   position: relative;
+  animation: show 1.5s ease-in-out;
 }
 
 .card > * {
   flex: 1 1 100%;
-}
-
-.textContent {
-  display: flex;
-  flex-wrap: row wrap;
-  flex-direction: column;
-  padding: 22px 20px 13px;
-}
-
-.metaData {
-  display: flex;
-  flex-wrap: row nowrap;
-  align-items: center;
-  font-size: 10px;
-  line-height: 12px;
-}
-
-.userLink {
-  font-size: 14px;;
-  display: flex;
-  flex-wrap: row nowrap;
-  align-items: center;
-  height: 20px;
-  padding: 0 6px 0 0;
-}
-
-.avatar {
-  height: 36px;
-  width: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.userName {
-  padding-left: 6px;
-  color: var(--orange);
-}
-
-.createdAt,
-.createdAt * {
-  color: var(--grey99);
-  font-size: 14px;;
-}
-
-@media all and (max-width: 1024px) {
-  .publishedLabel {
-    display: none;
-  }
-}
-
-.title {
-  font-size: 18px;
-  line-height: 19px;
-  font-weight: normal;
-  margin: 0;
-  padding: 7px 0 0;
-}
-
-.postLink {
-  max-height: 40px;
-  overflow: hidden;
-  -webkit-line-clamp: 2;
-  -webkit-line-orient: vertical;
-  display: -webkit-box;
-}
-
-.preview {
-  max-height: 160px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.previewImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-
-.menu {
-  position: absolute;
-  top: 17px;
-  right: 15px;
-}
-
-.menuButton {
-  width: 31px;
-  height: 31px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: rotate(90deg);
-  border-radius: 31px;
-  background: transparent;
-  border: 0;
-}
-
-.menuButton:active,
-.menuButton:hover {
-  background-color: rgba(51, 51, 51, 0.1);
-}
-
-.controls {
-  padding: 10px 20px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-}
-
-.karmaCounter > * + * {
-  padding: 0 0 0 2px;
-}
-
-.karmaValue {
-  color: var(--greyC4);
-}
-
-svg.down {
-  transform: rotate(180deg);
-}
-
-.commentsButton {
-  display: flex;
-  align-items: normal;
-}
-
-svg.commentsButton {
-  width: 18px;
-  height: 18px;
-}
-
-.commentsButton * {
-  color: var(--greyC4);
-}
-
-.commentsNumber {
-  padding: 0 0 6px;
-  font-size: 12px;
-  line-height: 14px;
-}
-
-.shareButton,
-.saveButton {
-  width: 20px;
-  height: 20px;
-  background-color: var(--greyC4);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px;
-  margin: 0 5px;
-}
-.shareButton svg,
-.saveButton svg {
-  width: 100%;
-  height: 100%; 
-  padding: 2px;
-}
-.actions {
-  display: flex;
-  flex-wrap: row nowrap;
 }
 
 @media all and (min-width: 1024px) {
@@ -181,115 +20,25 @@ svg.commentsButton {
   .card > * {
     flex: unset;
   }
-
-  .textContent {
-    order: 2;
-    width: calc(100% - 320px);
-  }
-
-  .metaData {
-    flex-wrap: row-reverse nowrap;
-    order: 2;
-    margin-top: 8px;
-  }
-
-  .title {
-    order: 1;
-    font-size: 18px;
-    height: 26px;
-    overflow: hidden;
-  }
-
-  .userLink {
-    order: 2;
-  }
-
-  .userName {
-    font-size: 14px;
-    line-height: 16px;
-  }
-
-  .avatar {
-    width: 24px;
-    height: 24px;
-    margin: 0 2px;
-  }
-
-  .createdAt {
-    order: 1;
-    font-size: 14px;
-    line-height: 16px;
-    margin-left: 0px;
-  }
-
-  .preview {
-    order: 1;
-    width: 240px;
-    height: 150px;
-  }
-
-  .previewImg {
-  }
-
-  .menu {
-    order: 3;
-    height: 100%;
-    right: 78px;
-    margin-top: 55px;
-    position: absolute;
-  }
-
-  .menuButton {
-    align-self: center;
-    transform: unset;
-  }
-
-  .controls {
-    order: 3;
-    margin: 0 24px;
-    padding: 0;
-  }
-
-  .karmaCounter {
-    order: 4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .karmaValue {
-    font-size: 14px;
-    line-height: 16px;
-    color: var(--black);
-  }
-
-  .commentsButton,
-  .actions {
-    display: none;
-  }
-
 }
 
 @media all and (max-width: 1540px) {
   .card {
     padding: 0 30px;
   }
-  .textContent {
-    /* flex-basis: 672px; */
+}
+
+@keyframes show {
+  0% {
+    opacity: 0.5;
+    /* transform: translateY(-30px); */
   }
-  .preview {
-    padding: 20px;
+  50% {
+    opacity: 0.7;
+
   }
-  .menu {
-    margin-top: 42px;
-  }
-  button.up:hover svg path {
-    fill: var(--green) !important;
-    color: var(--green) !important;
-  }
-  button.down:hover svg path {
-    fill: var(--orange) !important;
-    color: var(--orange) !important;
+  100% {
+    opacity: 1;
+    /* transform: none; */
   }
 }

@@ -12,13 +12,37 @@
   justify-content: center;
   transform: rotate(90deg);
   border-radius: 31px;
-  background: transparent;
+  background:  rgba(51, 51, 51, 0.15);
   border: 0;
 }
 
 .menuButton:active,
 .menuButton:hover {
-  background-color: rgba(51, 51, 51, 0.1);
+  background-color: rgba(51, 51, 51, 0.2);
+}
+.menuButton:active svg circle,
+.menuButton:hover svg circle {
+  fill: white;
+}
+
+.menuItem {
+  font-size: 13px;
+  line-height: 14px;
+  background-color: var(--greyF4);
+}
+.menuItem:hover {
+  background-color: var(--greyC4) !important;
+}
+
+.menuGroup {
+  border-bottom: 1px solid var(--grey99);
+}
+.menuGroup:nth-last-child() {
+  border-bottom: unset;
+}
+.menuGroupHeader {
+  font-size: 12px;
+  color: var(--grey99)
 }
 
 @media all and (min-width: 1024px) {

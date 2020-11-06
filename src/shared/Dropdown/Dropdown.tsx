@@ -1,5 +1,4 @@
 import React from 'react';
-import { EvalSourceMapDevToolPlugin } from 'webpack';
 import styles from './dropdown.css';
 
 interface IDropdownProps {
@@ -25,7 +24,7 @@ export function Dropdown({button, children, isOpen, onOpen = NOOP, onClose = NOO
   
   return (
   <div className={styles.container}>
-    <div onClick={()=>setIsDropdownOpen(!isDropdownOpen)}>
+    <div onClick={handleOpen}>
       {button}
     </div>
     {isDropdownOpen && (

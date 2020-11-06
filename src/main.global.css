@@ -11,6 +11,7 @@
     --greyC4: #c4c4c4;
     --grey99: #999999;
     --grey66: #666666;
+    --greyBlue:#c9e2ee;
 }
 
 body {
@@ -44,4 +45,8 @@ button {
     border: 0;
     background: transparent;
     cursor: pointer;
+}
+button:focus,
+button:active {
+    outline: unset !important;
 }
