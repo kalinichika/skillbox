@@ -15,20 +15,20 @@ interface IGenericListProps {
   header: string;
 }
 
-export function GenericList({header, list}:IGenericListProps) {
-  return(
+export function GenericList({ header, list }: IGenericListProps) {
+  return (
     <>
-    {list.map(({As='div', text, value, onClick, className, id, href})=>
-        <As 
+      {list.map(({ As = 'div', text, value, onClick, className, id, href }) => (
+        <As
           key={`${header}-${id}`}
           href={href}
           className={className}
           onClick={() => onClick(id, text)}
-          style={header==='Background Card' ? {background: value}: {}}
-          >
-        {text}
+          style={header === 'Background Card' ? { background: value } : {}}
+        >
+          {text}
         </As>
-    )}
+      ))}
     </>
-  )
+  );
 }

@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./layout.css";
+import React from 'react';
+import styles from './layout.css';
 
 interface ILayoutProps {
   children?: React.ReactNode;

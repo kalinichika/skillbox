@@ -1,36 +1,36 @@
-const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const nodeExternals = require("webpack-node-externals");
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 const NODE_ENV = process.env.NODE_ENV;
 const GLOBAL_CSS_REGEXP = /\.global\.css$/;
 
 module.exports = {
-  target: "node",
-  mode: NODE_ENV ? NODE_ENV : "development",
-  entry: path.resolve(__dirname, "../src/server/server.js"),
+  target: 'node',
+  mode: NODE_ENV ? NODE_ENV : 'development',
+  entry: path.resolve(__dirname, '../src/server/server.js'),
   output: {
-    path: path.resolve(__dirname, "../dist/server"),
-    filename: "server.js",
+    path: path.resolve(__dirname, '../dist/server'),
+    filename: 'server.js',
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   externals: [nodeExternals()],
   module: {
     rules: [
       {
         test: /\.[tj]sx?$/,
-        loader: "ts-loader",
+        loader: 'ts-loader',
       },
       {
         test: /\.css$/,
         use: [
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               modules: {
-                mode: "local",
-                localIdentName: "[name]__[local]--[hash:base64:5]",
+                mode: 'local',
+                localIdentName: '[name]__[local]--[hash:base64:5]',
                 exportOnlyLocals: true,
               },
             },
@@ -40,7 +40,7 @@ module.exports = {
       },
       {
         test: GLOBAL_CSS_REGEXP,
-        use: ["css-loader"],
+        use: ['css-loader'],
       },
     ],
   },

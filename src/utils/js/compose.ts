@@ -2,10 +2,10 @@
 // onChange={preventDefault(stopPropagation(getValue(onChange)))}
 // onChange={compose(onChange, getValue, stopPropagation, preventDefault)}
 
-import { filter } from "../../../webpack.config";
+import { filter } from '../../../webpack.config';
 
 export function compose<U>(...fns: Function[]) {
-  return <E,>(initialValue: any): U =>
+  return <E>(initialValue: any): U =>
     fns.reduceRight((previousValue, fn) => fn(previousValue), initialValue);
 }
 
@@ -13,13 +13,13 @@ export function compose<U>(...fns: Function[]) {
 // onChange={pipe(preventDefault, stopPropagation, getValue, onChange)}
 
 export function pipe<U>(...fns: Function[]) {
-  return <E,>(initialValue: any) : U =>
-  fns.reduce((previousValue, fn) => fn(previousValue), initialValue)
-} 
+  return <E>(initialValue: any): U =>
+    fns.reduce((previousValue, fn) => fn(previousValue), initialValue);
+}
 
 // Забирает свойства из объекта
 export function pick<K extends string>(prop: K) {
-  return <O extends Record<K, any>> (obj: O) => obj[prop]
+  return <O extends Record<K, any>>(obj: O) => obj[prop];
 }
 
 // Проверяет на равенство
@@ -33,9 +33,9 @@ export function cond(value: boolean) {
 }
 
 const comments = [
-  {text: 'text one', id: 22},
-  {text: 'text two', id: 44}
-]
+  { text: 'text one', id: 22 },
+  { text: 'text two', id: 44 },
+];
 
 // const filteredComments = comments.filter(item=> item.id!==22)
 
@@ -44,7 +44,8 @@ const comments = [
 // const filterWithId = (id: number) => pipe(pick('id'), isEqual(id), cond);
 // const filteredComments = comments.filter(filterWithId(22))
 
-const createFilterBy = (prop: string) => (id: number) => pipe(pick('id'), isEqual(id), cond);
+const createFilterBy = (prop: string) => (id: number) =>
+  pipe(pick('id'), isEqual(id), cond);
 const filterWithId = createFilterBy('id');
 const filterWithValue = createFilterBy('vaule');
-const filteredComments = comments.filter(filterWithId(22))
+const filteredComments = comments.filter(filterWithId(22));
