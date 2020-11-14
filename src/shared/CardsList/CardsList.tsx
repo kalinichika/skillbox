@@ -1,5 +1,9 @@
 import React from 'react';
 import { Card } from './Card';
+import { Icon } from '../Icon';
+import { Dropdown } from '../Dropdown';
+import { GenericList } from '../GenericList';
+import classNames from 'classnames';
 import styles from './cardslist.css';
 
 export function CardsList() {
@@ -62,10 +66,13 @@ export function CardsList() {
       },
     },
   ];
+  type TBookmarks = number[];
   interface IKarmaValues {
     [N: number]: number;
   }
+
   const [data, setData] = React.useState(defaultData);
+  const [bookmarks, setBookmarks] = React.useState<TBookmarks>([]);
   const [karmaValues, setKarmaValues] = React.useState<IKarmaValues>({
     0: 1,
     1: 234,
@@ -118,17 +125,68 @@ export function CardsList() {
     }
   };
 
+  const hiddenCard = (id: number) => {
+    setData((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const changeBookmark = (id: number, type: 'add' | 'delete') => {
+    if (type === 'add') setBookmarks((prev) => [...prev, id]);
+    else if (type === 'delete')
+      setBookmarks((prev) => prev.filter((bookmarksId) => bookmarksId !== id));
+  };
+
+  type TBookmarksItem = {
+    id: string;
+    text: string;
+    As: 'div';
+  };
+  const getBookmarksList = () => {
+    let listData: TBookmarksItem[] = [];
+    bookmarks.map((id) => {
+      const findData = data.find((itemData) => itemData.id === id);
+      if (findData)
+        listData.push({
+          id: findData.id.toString(),
+          text: findData.title,
+          As: 'div',
+        });
+    });
+    return listData;
+  };
+
+  const classesBookmarksList = classNames(styles.bookmarksList);
+
   return (
-    <ul className={styles.cardsList}>
-      {data.map((dataCard) => (
-        <Card
-          {...dataCard}
-          moveHandler={moveHandler}
-          key={dataCard.id}
-          karmaValue={karmaValues[dataCard.id]}
-          setKarmaValue={(id, value) => setKarmaValue(id, value)}
-        />
-      ))}
-    </ul>
+    <>
+      {bookmarks.length !== 0 && (
+        <Dropdown
+          button={
+            <Icon
+              icon="bookmark"
+              size={20}
+              counter={bookmarks.length}
+              className={styles.bookmarks}
+            />
+          }
+          childrenClassName={classesBookmarksList}
+        >
+          <GenericList list={getBookmarksList()} />
+        </Dropdown>
+      )}
+      <ul className={styles.cardsList}>
+        {data.map((dataCard) => (
+          <Card
+            {...dataCard}
+            key={dataCard.id}
+            hiddenCard={hiddenCard}
+            moveHandler={moveHandler}
+            changeBookmark={changeBookmark}
+            inBookmarks={bookmarks.includes(dataCard.id)}
+            karmaValue={karmaValues[dataCard.id]}
+            setKarmaValue={(id, value) => setKarmaValue(id, value)}
+          />
+        ))}
+      </ul>
+    </>
   );
 }

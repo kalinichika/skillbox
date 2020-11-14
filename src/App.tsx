@@ -5,6 +5,7 @@ import { Layout } from './shared/Layout';
 import { Header } from './shared/Header';
 import { Content } from './shared/Content';
 import { CardsList } from './shared/CardsList';
+import { IconSprite } from './shared/Icon';
 
 function AppComponent() {
   return (
@@ -13,6 +14,7 @@ function AppComponent() {
       <Content>
         <CardsList />
       </Content>
+      <IconSprite />
     </Layout>
   );
 }

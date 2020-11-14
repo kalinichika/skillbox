@@ -1,0 +1,14 @@
+.content {
+  position: relative;
+  top: 100px !important;
+  width: 100%;
+  height: calc(100vh - 100px - 20px);
+  overflow: auto;
+}
+
+@media all and (max-width: 1024px) {
+  .content {
+    top: 180px !important;
+    height: calc(100vh - 180px - 20px);
+  }
+}

@@ -1,30 +1,42 @@
 import React from 'react';
 import styles from './controls.css';
-import {SaveButton, ShareButton, ArrowButton, CommentsButton} from '../../../SVGButtons';
+import { Icon } from '../../../Icon';
 
 interface IControls {
-  karmaValue: number,
-  setKarmaValue: (value: number) => void,
+  karmaValue: number;
+  setKarmaValue: (value: number) => void;
 }
 
-export function Controls({karmaValue, setKarmaValue}: IControls) {
+export function Controls({ karmaValue, setKarmaValue }: IControls) {
   return (
-
-      <div className={styles.controls}>
-        <div className={styles.karmaCounter}>
-          <ArrowButton className={styles.up} onClick={()=>setKarmaValue(karmaValue + 1)} />
-          <span className={styles.karmaValue}>{karmaValue}</span>
-          <ArrowButton className={styles.down} onClick={()=>setKarmaValue(karmaValue - 1)} />
-        </div>
-
-        <CommentsButton classNames={{button:styles.commentsButton, number:styles.commentsNumber}} commentsNumber={24}/>
-
-        <div className={styles.actions}>
-          <ShareButton className={styles.shareButton}/>
-          <SaveButton className={styles.saveButton}/>
-        </div>
-
+    <div className={styles.controls}>
+      <div className={styles.karmaCounter}>
+        <Icon
+          icon="arrow"
+          As="button"
+          className={styles.up}
+          onClick={() => setKarmaValue(karmaValue + 1)}
+        />
+        <span className={styles.karmaValue}>{karmaValue}</span>
+        <Icon
+          icon="arrow"
+          As="button"
+          className={styles.down}
+          onClick={() => setKarmaValue(karmaValue - 1)}
+        />
       </div>
 
+      <Icon
+        icon="comments"
+        As="button"
+        className={styles.commentsButton}
+        counter={24}
+      />
+
+      <div className={styles.actions}>
+        <Icon icon="share" As="button" className={styles.shareButton} />
+        <Icon icon="save" As="button" className={styles.saveButton} />
+      </div>
+    </div>
   );
 }

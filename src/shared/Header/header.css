@@ -1,14 +1,15 @@
+.header {
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  background-color: var(--greyF4);
+}
 @media all and (min-width: 1024px) {
   .header {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     padding: 40px;
-  }
-}
-
-@media all and (min-width: 1540px) {
-  .header {
-    padding: 67px 0;
+    width: calc(100% - 80px);
   }
 }

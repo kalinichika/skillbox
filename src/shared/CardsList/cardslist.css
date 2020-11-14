@@ -1,5 +1,41 @@
-@media all and (min-width: 1024px) {
-  .cardsList {
-    padding: 40px 0;
+.cardslist {
+  position: relative;
+}
+.bookmarks {
+  position: fixed;
+  z-index: 20;
+  right: 30px;
+  top: 46px;
+  display: flex;
+  align-items: center;
+}
+.bookmarks svg * {
+  fill: var(--green);
+}
+
+.bookmarksList {
+  position: fixed;
+  top: 70px;
+  right: 40px;
+  z-index: 22;
+}
+
+.bookmarksList > div > div > div {
+  padding: 2px;
+  max-width: 200px;
+  overflow: hidden;
+  display: block !important;
+}
+.bookmarksList > div > div > div:hover {
+  background-color: var(--greyBlue);
+}
+
+@media all and (max-width: 1024px) {
+  .bookmarks {
+    top: 80px;
+  }
+  .bookmarksList {
+    top: 108px;
+    right: 30px;
   }
 }

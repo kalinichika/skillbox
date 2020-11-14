@@ -13,12 +13,35 @@
   flex: 1 1 100%;
 }
 
+.bookmark {
+  position: absolute !important;
+  left: 30px;
+  top: calc(50% - 10px);
+}
+.bookmark svg {
+  fill: var(--grey99);
+  animation: appear 0.2s ease;
+}
+
 @media all and (min-width: 1024px) {
   .card {
     align-items: center;
   }
   .card > * {
     flex: unset;
+  }
+}
+@media all and (max-width: 1024px) {
+  .bookmark {
+    width: 24px;
+    height: 24px;
+    position: absolute !important;
+    right: 20px;
+    left: auto;
+    top: 24px;
+  }
+  .bookmark svg {
+    fill: var(--greyC4);
   }
 }
 
@@ -35,10 +58,18 @@
   }
   50% {
     opacity: 0.7;
-
   }
   100% {
     opacity: 1;
     /* transform: none; */
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
