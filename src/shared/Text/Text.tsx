@@ -49,7 +49,5 @@ export function Text(props: ITextProps) {
     { [styles[`d${desktopSize}`]]: desktopSize }
   );
 
-  console.log(classes);
-
   return <As className={classes}>{children}</As>;
 }

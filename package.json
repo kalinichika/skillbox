@@ -55,7 +55,7 @@
     "webpack-node-externals": "^2.5.2"
   },
   "scripts": {
-    "dev": "cross-env NODE_ENV=development node ./bin/dev",
+    "dev": "cross-env NODE_ENV=development CLIENT_ID=JgKiK8iIy9px3g node ./bin/dev",
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "test": "jest",

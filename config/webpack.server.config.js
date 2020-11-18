@@ -1,5 +1,5 @@
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const NODE_ENV = process.env.NODE_ENV;
 const GLOBAL_CSS_REGEXP = /\.global\.css$/;
@@ -47,5 +47,5 @@ module.exports = {
   optimization: {
     minimize: false,
   },
-  plugins: [new CleanWebpackPlugin()],
+  plugins: [new DefinePlugin({ 'process.env.CLIENT_ID': "`'${process.env.CLIENT_ID}'" })],
 };
