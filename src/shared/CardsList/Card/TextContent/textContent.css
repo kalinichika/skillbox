@@ -14,7 +14,7 @@
 }
 
 .userLink {
-  font-size: 14px;;
+  font-size: 14px;
   display: flex;
   flex-wrap: row nowrap;
   align-items: center;
@@ -37,7 +37,7 @@
 .createdAt,
 .createdAt * {
   color: var(--grey99);
-  font-size: 14px;;
+  font-size: 14px;
 }
 
 @media all and (max-width: 1024px) {
@@ -62,11 +62,10 @@
   display: -webkit-box;
 }
 
-
 @media all and (min-width: 1024px) {
   .textContent {
     order: 2;
-    width: calc(100% - 320px);
+    width: calc(100% - 440px);
   }
 
   .metaData {
@@ -103,5 +102,4 @@
     line-height: 16px;
     margin-left: 0px;
   }
-
 }

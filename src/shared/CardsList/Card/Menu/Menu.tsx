@@ -3,7 +3,6 @@ import styles from './menu.css';
 import { Icon } from '../../../Icon';
 import { Dropdown } from '../../../Dropdown';
 import { GenericList } from '../../../GenericList';
-import { generateId } from '../../../../utils/react/generateRandomIndex';
 import { merge } from '../../../../utils/js/merge';
 
 const LIST = [
@@ -26,11 +25,11 @@ const LIST3 = [
 ];
 
 interface IMenu {
-  cardId: number;
+  cardId: string;
   setBackground: (text: string) => void;
-  moveHandler: (id: number, text: string) => void;
-  hiddenCard: (id: number) => void;
-  addBookmark: (id: number) => void;
+  moveHandler: (id: string, text: string) => void;
+  hiddenCard: (id: string) => void;
+  addBookmark: (id: string) => void;
 }
 
 interface IItemDropdown {
@@ -57,10 +56,10 @@ export function Menu({
   };
 
   const handleItemClick = (
-    id: string,
+    id: number | string,
     text: string,
     header: string,
-    cardId: number
+    cardId: string
   ) => {
     if (header === 'Moved') {
       moveHandler(cardId, text);
@@ -99,7 +98,7 @@ export function Menu({
               header={header}
               list={list.map(
                 merge({
-                  onClick: (id: string, text: string) =>
+                  onClick: (id: string | number, text: string) =>
                     handleItemClick(id, text, header, cardId),
                   className: styles.menuItem,
                 })

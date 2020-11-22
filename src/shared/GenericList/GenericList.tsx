@@ -2,11 +2,11 @@ import React from 'react';
 import { Icon, EIcon } from '../Icon';
 
 interface IItem {
-  id: string;
+  id: number | string;
   text: string;
   icon?: string;
   value?: string;
-  onClick?: (id: string, text: string) => void;
+  onClick?: (id: number | string, text: string) => void;
   className?: string;
   As?: 'a' | 'li' | 'button' | 'div';
   href?: string;

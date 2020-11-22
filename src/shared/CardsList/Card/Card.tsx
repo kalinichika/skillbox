@@ -7,22 +7,23 @@ import { Controls } from './Controls';
 import { Icon } from '../../../shared/Icon';
 
 interface ICard {
-  id: number;
-  key: number;
+  id: string;
+  key: string;
   time: Date;
   url: string;
   title: string;
   preview: string;
   karmaValue: number;
+  commentsValue: number;
   author: {
     name: string;
     avatar: string;
     href: string;
   };
-  moveHandler: (id: number, text: string) => void;
-  setKarmaValue: (id: number, value: number) => void;
-  hiddenCard: (id: number) => void;
-  changeBookmark: (id: number, type: 'add' | 'delete') => void;
+  moveHandler: (id: string, text: string) => void;
+  setKarmaValue: (id: string, value: number) => void;
+  hiddenCard: (id: string) => void;
+  changeBookmark: (id: string, type: 'add' | 'delete') => void;
   inBookmarks: boolean;
 }
 
@@ -34,6 +35,7 @@ export function Card({
   time,
   author,
   karmaValue,
+  commentsValue,
   moveHandler,
   setKarmaValue,
   hiddenCard,
@@ -62,11 +64,12 @@ export function Card({
         }}
         moveHandler={moveHandler}
         hiddenCard={hiddenCard}
-        addBookmark={(id: number) => changeBookmark(id, 'add')}
+        addBookmark={(id: string) => changeBookmark(id, 'add')}
         cardId={id}
       />
 
       <Controls
+        commentsValue={commentsValue}
         karmaValue={karmaValue}
         setKarmaValue={(value) => setKarmaValue(id, value)}
       />

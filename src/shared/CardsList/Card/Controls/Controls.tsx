@@ -3,11 +3,16 @@ import styles from './controls.css';
 import { Icon } from '../../../Icon';
 
 interface IControls {
+  commentsValue: number;
   karmaValue: number;
   setKarmaValue: (value: number) => void;
 }
 
-export function Controls({ karmaValue, setKarmaValue }: IControls) {
+export function Controls({
+  karmaValue,
+  setKarmaValue,
+  commentsValue,
+}: IControls) {
   return (
     <div className={styles.controls}>
       <div className={styles.karmaCounter}>
@@ -30,7 +35,7 @@ export function Controls({ karmaValue, setKarmaValue }: IControls) {
         icon="comments"
         As="button"
         className={styles.commentsButton}
-        counter={24}
+        counter={commentsValue}
       />
 
       <div className={styles.actions}>
