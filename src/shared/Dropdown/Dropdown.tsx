@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import styles from './dropdown.css';
 
@@ -9,11 +10,13 @@ interface IDropdownProps {
   onOpen?: () => void;
   onClose?: () => void;
   childrenClassName?: string;
+  nodeId?: string;
 }
 
 const NOOP = () => {};
 
 export function Dropdown({
+  nodeId = '',
   button,
   children,
   isOpen,
@@ -33,20 +36,30 @@ export function Dropdown({
     }
   };
 
+  if (!nodeId) return null;
+  const node =
+    document.getElementById(nodeId) || document.getElementById('modal-root');
+  if (!node) return null;
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id={nodeId}>
       <div onClick={handleOpen}>{button}</div>
-      {isDropdownOpen && (
-        <div
-          className={classNames(styles.listContainer, {
-            [`${childrenClassName}`]: childrenClassName,
-          })}
-        >
-          <div className={styles.list} onClick={() => setIsDropdownOpen(false)}>
-            {children}
-          </div>
-        </div>
-      )}
+      {isDropdownOpen &&
+        ReactDOM.createPortal(
+          <div
+            className={classNames(styles.listContainer, {
+              [`${childrenClassName}`]: childrenClassName,
+            })}
+          >
+            <div
+              className={styles.list}
+              onClick={() => setIsDropdownOpen(false)}
+            >
+              {children}
+            </div>
+          </div>,
+          node
+        )}
     </div>
   );
 }

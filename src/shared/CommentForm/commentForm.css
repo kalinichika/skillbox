@@ -1,0 +1,47 @@
+.form {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.input {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 89px;
+  margin-top: 16px;
+
+  border: 1px solid #d9d9d9;
+  background-color: var(--greyF4);
+  box-sizing: border-box;
+  border-radius: 3px 3px 0px 0px;
+  padding: 16px;
+}
+
+.buttonsBlock {
+  margin-top: -6px;
+  padding: 2px;
+  width: 100%;
+  height: 38px;
+  border: 1px solid var(--greyD9);
+  background-color: var(--greyF3);
+  display: flex;
+  flex-direction: row-reverse;
+  border-radius: 0 0 10px 10px;
+}
+
+.button {
+  height: 24px;
+  width: 200px;
+  margin: auto 0;
+
+  color: var(--white);
+  background-color: var(--grey-blue-dark);
+  border-radius: 10px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+}

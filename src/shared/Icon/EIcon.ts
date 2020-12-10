@@ -6,4 +6,5 @@ export enum EIcon {
   menu = 'menu',
   save = 'save',
   share = 'share',
+  close = 'close',
 }

@@ -25,6 +25,8 @@ interface ICard {
   hiddenCard: (id: string) => void;
   changeBookmark: (id: string, type: 'add' | 'delete') => void;
   inBookmarks: boolean;
+  openedMenuId: string;
+  setOpenedMenuId: (id: string) => void;
 }
 
 export function Card({
@@ -41,10 +43,11 @@ export function Card({
   hiddenCard,
   changeBookmark,
   inBookmarks,
+  openedMenuId,
+  setOpenedMenuId,
 }: ICard) {
-  const [background, setBackground] = React.useState('white');
   return (
-    <li className={styles.card} key={id} style={{ background: background }}>
+    <li className={styles.card} key={id}>
       {inBookmarks && (
         <Icon
           icon="bookmark"
@@ -59,9 +62,8 @@ export function Card({
       <Preview preview={preview} />
 
       <Menu
-        setBackground={(color) => {
-          setBackground(color);
-        }}
+        setOpenedMenuId={setOpenedMenuId}
+        openedMenuId={openedMenuId}
         moveHandler={moveHandler}
         hiddenCard={hiddenCard}
         addBookmark={(id: string) => changeBookmark(id, 'add')}
