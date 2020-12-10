@@ -5,7 +5,7 @@ interface ICommentForm {
   type?: string;
 }
 
-export function CommentForm({ type }: ICommentForm) {
+export function CommentFormUncontrolled({ type }: ICommentForm) {
   const ref = useRef<HTMLTextAreaElement>(null);
 
   function handleSubmit(event: FormEvent) {

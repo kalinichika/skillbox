@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { usePostData } from '../../hooks/usePostData';
+import { usePostData } from '../hooks/usePostData';
 
 interface IPostContextData {
   id: string;
