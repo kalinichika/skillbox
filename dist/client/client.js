@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "62accf098e1b2a69967e";
+/******/ 	var hotCurrentHash = "dbc96bb556a0d9eb6ec9";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -3943,15 +3943,15 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nex
 
 /***/ }),
 
-/***/ "./src/shared/CommentForm/CommentFormControlled.tsx":
-/*!**********************************************************!*\
-  !*** ./src/shared/CommentForm/CommentFormControlled.tsx ***!
-  \**********************************************************/
+/***/ "./src/shared/CommentForm/CommentFormUncontrolled.tsx":
+/*!************************************************************!*\
+  !*** ./src/shared/CommentForm/CommentFormUncontrolled.tsx ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\r\n}) : (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    o[k2] = m[k];\r\n}));\r\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\r\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\r\n}) : function(o, v) {\r\n    o[\"default\"] = v;\r\n});\r\nvar __importStar = (this && this.__importStar) || function (mod) {\r\n    if (mod && mod.__esModule) return mod;\r\n    var result = {};\r\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\r\n    __setModuleDefault(result, mod);\r\n    return result;\r\n};\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.CommentForm = void 0;\r\nvar react_1 = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\r\nvar commentContext_1 = __webpack_require__(/*! ../context/commentContext */ \"./src/shared/context/commentContext.ts\");\r\nvar commentForm_css_1 = __importDefault(__webpack_require__(/*! ./commentForm.css */ \"./src/shared/CommentForm/commentForm.css\"));\r\nfunction CommentForm(_a) {\r\n    var type = _a.type;\r\n    var context = type === 'reply' ? react_1.useState('') : react_1.useContext(commentContext_1.commentContext);\r\n    var _b = Array.isArray(context)\r\n        ? context\r\n        : [context.value, context.onChange], value = _b[0], onChange = _b[1];\r\n    function handleChange(event) {\r\n        onChange(event.target.value);\r\n    }\r\n    function handleSubmit(event) {\r\n        event.preventDefault();\r\n        console.log(value);\r\n    }\r\n    return (react_1.default.createElement(\"form\", { className: commentForm_css_1.default.form, onSubmit: handleSubmit },\r\n        react_1.default.createElement(\"textarea\", { className: commentForm_css_1.default.input, value: value, onChange: handleChange }),\r\n        react_1.default.createElement(\"div\", { className: commentForm_css_1.default.buttonsBlock },\r\n            react_1.default.createElement(\"button\", { type: \"submit\", className: commentForm_css_1.default.button }, type === 'reply' ? 'Reply' : 'Comment'))));\r\n}\r\nexports.CommentForm = CommentForm;\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/CommentFormControlled.tsx?");
+eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\r\n}) : (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    o[k2] = m[k];\r\n}));\r\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\r\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\r\n}) : function(o, v) {\r\n    o[\"default\"] = v;\r\n});\r\nvar __importStar = (this && this.__importStar) || function (mod) {\r\n    if (mod && mod.__esModule) return mod;\r\n    var result = {};\r\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\r\n    __setModuleDefault(result, mod);\r\n    return result;\r\n};\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.CommentForm = void 0;\r\nvar react_1 = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\r\nvar commentForm_css_1 = __importDefault(__webpack_require__(/*! ./commentForm.css */ \"./src/shared/CommentForm/commentForm.css\"));\r\nfunction CommentForm(_a) {\r\n    var type = _a.type;\r\n    var ref = react_1.useRef(null);\r\n    function handleSubmit(event) {\r\n        var _a;\r\n        event.preventDefault();\r\n        console.log((_a = ref.current) === null || _a === void 0 ? void 0 : _a.value);\r\n    }\r\n    react_1.useEffect(function () {\r\n        var _a;\r\n        (_a = ref.current) === null || _a === void 0 ? void 0 : _a.focus();\r\n    }, []);\r\n    return (react_1.default.createElement(\"form\", { className: commentForm_css_1.default.form, onSubmit: handleSubmit },\r\n        react_1.default.createElement(\"textarea\", { ref: ref, className: commentForm_css_1.default.input, defaultValue: type === 'reply' ? 'Михаил Рогов, ' : undefined }),\r\n        react_1.default.createElement(\"div\", { className: commentForm_css_1.default.buttonsBlock },\r\n            react_1.default.createElement(\"button\", { type: \"submit\", className: commentForm_css_1.default.button }, type === 'reply' ? 'Reply' : 'Comment'))));\r\n}\r\nexports.CommentForm = CommentForm;\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/CommentFormUncontrolled.tsx?");
 
 /***/ }),
 
@@ -3974,7 +3974,7 @@ eval("var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.CommentForm = void 0;\r\nvar CommentFormControlled_1 = __webpack_require__(/*! ./CommentFormControlled */ \"./src/shared/CommentForm/CommentFormControlled.tsx\");\r\nObject.defineProperty(exports, \"CommentForm\", { enumerable: true, get: function () { return CommentFormControlled_1.CommentForm; } });\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/index.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.CommentForm = void 0;\r\nvar CommentFormUncontrolled_1 = __webpack_require__(/*! ./CommentFormUncontrolled */ \"./src/shared/CommentForm/CommentFormUncontrolled.tsx\");\r\nObject.defineProperty(exports, \"CommentForm\", { enumerable: true, get: function () { return CommentFormUncontrolled_1.CommentForm; } });\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/index.ts?");
 
 /***/ }),
 

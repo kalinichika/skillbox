@@ -1,2 +1,2 @@
-import { CommentForm } from './CommentFormControlled';
+import { CommentForm } from './CommentFormUncontrolled';
 export { CommentForm };

@@ -1,4 +1,10 @@
-import React, { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FormEvent,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { commentContext } from '../context/commentContext';
 import styles from './commentForm.css';
 
@@ -22,12 +28,20 @@ export function CommentForm({ type }: ICommentForm) {
     console.log(value);
   }
 
+  const ref = React.useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    ref.current?.focus();
+    if (type === 'reply') onChange('Михаил Рогов, ');
+  }, []);
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <textarea
         className={styles.input}
         value={value}
         onChange={handleChange}
+        ref={ref}
       />
       <div className={styles.buttonsBlock}>
         <button type="submit" className={styles.button}>
