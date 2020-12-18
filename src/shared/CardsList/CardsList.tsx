@@ -3,7 +3,7 @@ import { Card } from './Card';
 import { Icon } from '../Icon';
 import { Dropdown } from '../Dropdown';
 import { GenericList } from '../GenericList';
-import { postContext } from '../context/postContext';
+import { postContext } from '../../context/postContext';
 import classNames from 'classnames';
 import styles from './cardslist.css';
 
