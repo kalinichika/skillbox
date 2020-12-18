@@ -27,7 +27,7 @@
   display: block !important;
 }
 .bookmarksList > div > div > div:hover {
-  background-color: var(--greyBlue);
+  background-color: var(--grey-blue);
 }
 
 @media all and (max-width: 1024px) {

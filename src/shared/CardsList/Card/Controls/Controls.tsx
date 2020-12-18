@@ -22,7 +22,9 @@ export function Controls({
           className={styles.up}
           onClick={() => setKarmaValue(karmaValue + 1)}
         />
-        <span className={styles.karmaValue}>{karmaValue}</span>
+        <span className={styles.karmaValue}>
+          {karmaValue > 1000 ? Math.floor(karmaValue / 1000) + 'K' : karmaValue}
+        </span>
         <Icon
           icon="arrow"
           As="button"

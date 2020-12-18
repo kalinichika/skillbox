@@ -90,6 +90,7 @@ export function CardsList() {
   const contextData = useContext<IPostData[]>(postContext);
 
   const [data, setData] = React.useState<IPostData[]>(contextData);
+  const [openedMenuId, setOpenedMenuId] = React.useState('');
 
   useEffect(() => {
     setData(contextData);
@@ -179,6 +180,7 @@ export function CardsList() {
     <>
       {bookmarks.length !== 0 && (
         <Dropdown
+          nodeId="dropdown-bookmarks"
           button={
             <Icon
               icon="bookmark"
@@ -205,6 +207,8 @@ export function CardsList() {
             setKarmaValue={(id: string, value: number) =>
               setKarmaValue(id, value)
             }
+            openedMenuId={openedMenuId}
+            setOpenedMenuId={setOpenedMenuId}
           />
         ))}
       </ul>

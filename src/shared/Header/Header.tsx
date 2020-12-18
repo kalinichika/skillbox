@@ -12,6 +12,7 @@ export function Header() {
       <ThreadTitle />
       <SortBlock />
       <UserBlock />
+      <div id="dropdown-bookmarks" />
     </header>
   );
 }

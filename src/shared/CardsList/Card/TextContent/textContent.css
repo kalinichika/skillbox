@@ -31,7 +31,7 @@
 
 .userName {
   padding-left: 6px;
-  color: var(--orange);
+  color: var(--grey-blue-dark);
 }
 
 .createdAt,
@@ -41,25 +41,21 @@
 }
 
 @media all and (max-width: 1024px) {
+  .publishedLabel span {
+    display: none;
+  }
+}
+
+@media all and (min-width: 1540px) {
   .publishedLabel {
     display: none;
   }
 }
 
-.title {
-  font-size: 18px;
-  line-height: 19px;
-  font-weight: normal;
-  margin: 0;
-  padding: 7px 0 0;
-}
-
-.postLink {
-  max-height: 40px;
-  overflow: hidden;
-  -webkit-line-clamp: 2;
-  -webkit-line-orient: vertical;
-  display: -webkit-box;
+@media all and (max-width: 1540px) {
+  .publishedWithoutLabel {
+    display: none;
+  }
 }
 
 @media all and (min-width: 1024px) {
@@ -72,13 +68,6 @@
     flex-wrap: row-reverse nowrap;
     order: 2;
     margin-top: 8px;
-  }
-
-  .title {
-    order: 1;
-    font-size: 18px;
-    height: 26px;
-    overflow: hidden;
   }
 
   .userLink {

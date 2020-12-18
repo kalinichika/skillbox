@@ -29,11 +29,6 @@ export function GenericList({ header, list, className }: IGenericListProps) {
             href={href}
             className={className}
             onClick={onClick ? () => onClick(id, text) : Noop}
-            style={
-              header && header === 'Background Card'
-                ? { background: value }
-                : {}
-            }
           >
             {icon && EIcon.hasOwnProperty(icon) ? (
               <Icon icon={icon} size={16} />
