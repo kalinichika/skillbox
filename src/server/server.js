@@ -22,9 +22,7 @@ app.get('/auth', (req, res) => {
       }
     )
     .then(({ data }) => {
-      res.send(
-        indexTemplate(ReactDOM.renderToString(App()), data['access_token'])
-      );
+      res.send(indexTemplate(ReactDOM.renderToString(App())));
     })
     .catch(console.log);
 });

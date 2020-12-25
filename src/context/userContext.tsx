@@ -13,6 +13,6 @@ export function UserContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [data] = useUserData();
+  const { data } = useUserData();
   return <userContext.Provider value={data}>{children}</userContext.Provider>;
 }

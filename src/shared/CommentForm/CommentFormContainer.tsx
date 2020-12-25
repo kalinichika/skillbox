@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TypeState } from '../../redux/typeState';
-import { updateComment } from '../../redux/action';
+import { CommonState } from '../../redux/common/initialState';
+import { updateComment } from '../../redux/common/actions';
 import { CommentFormControlled } from './CommentFormControlled';
 
 interface ICommentForm {
@@ -14,7 +14,7 @@ export function CommentForm({ type }: ICommentForm) {
     type === 'reply'
       ? useState('')
       : [
-          useSelector<TypeState, string>((state) => state.commentText),
+          useSelector<CommonState, string>((state) => state.commentText),
           (val: string) => dispatch(updateComment(val)),
         ];
 

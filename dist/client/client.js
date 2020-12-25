@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "67aeea364a4fadd5153d";
+/******/ 	var hotCurrentHash = "65c104f742349fb237d1";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -3738,6 +3738,18 @@ eval("\r\nvar compose = __webpack_require__(/*! redux */ \"./node_modules/redux/
 
 /***/ }),
 
+/***/ "./node_modules/redux-thunk/es/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/redux-thunk/es/index.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nfunction createThunkMiddleware(extraArgument) {\r\n    return function (_ref) {\r\n        var dispatch = _ref.dispatch, getState = _ref.getState;\r\n        return function (next) {\r\n            return function (action) {\r\n                if (typeof action === 'function') {\r\n                    return action(dispatch, getState, extraArgument);\r\n                }\r\n                return next(action);\r\n            };\r\n        };\r\n    };\r\n}\r\nvar thunk = createThunkMiddleware();\r\nthunk.withExtraArgument = createThunkMiddleware;\r\nexports.default = thunk;\r\n\n\n//# sourceURL=webpack:///./node_modules/redux-thunk/es/index.js?");
+
+/***/ }),
+
 /***/ "./node_modules/redux/es/redux.js":
 /*!****************************************!*\
   !*** ./node_modules/redux/es/redux.js ***!
@@ -3960,7 +3972,7 @@ eval("\r\nmodule.exports = function (module) {\r\n    if (!module.webpackPolyfil
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.App = void 0;\r\nvar root_1 = __webpack_require__(/*! react-hot-loader/root */ \"./node_modules/react-hot-loader/root.js\");\r\nvar react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\r\nvar react_redux_1 = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\r\nvar store_1 = __webpack_require__(/*! ./store */ \"./src/store.ts\");\r\n__webpack_require__(/*! ./main.global.css */ \"./src/main.global.css\");\r\nvar Layout_1 = __webpack_require__(/*! ./shared/Layout */ \"./src/shared/Layout/index.ts\");\r\nvar Header_1 = __webpack_require__(/*! ./shared/Header */ \"./src/shared/Header/index.ts\");\r\nvar Content_1 = __webpack_require__(/*! ./shared/Content */ \"./src/shared/Content/index.ts\");\r\nvar CardsList_1 = __webpack_require__(/*! ./shared/CardsList */ \"./src/shared/CardsList/index.ts\");\r\nvar Icon_1 = __webpack_require__(/*! ./shared/Icon */ \"./src/shared/Icon/index.ts\");\r\nvar userContext_1 = __webpack_require__(/*! ./context/userContext */ \"./src/context/userContext.tsx\");\r\nvar postContext_1 = __webpack_require__(/*! ./context/postContext */ \"./src/context/postContext.tsx\");\r\nfunction AppComponent() {\r\n    return (react_1.default.createElement(react_redux_1.Provider, { store: store_1.store },\r\n        react_1.default.createElement(userContext_1.UserContextProvider, null,\r\n            react_1.default.createElement(postContext_1.PostContextProvider, null,\r\n                react_1.default.createElement(Layout_1.Layout, null,\r\n                    react_1.default.createElement(Header_1.Header, null),\r\n                    react_1.default.createElement(Content_1.Content, null,\r\n                        react_1.default.createElement(CardsList_1.CardsList, null)),\r\n                    react_1.default.createElement(Icon_1.IconSprite, null))))));\r\n}\r\nexports.App = root_1.hot(function () { return react_1.default.createElement(AppComponent, null); });\r\n\n\n//# sourceURL=webpack:///./src/App.tsx?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.App = void 0;\r\nvar root_1 = __webpack_require__(/*! react-hot-loader/root */ \"./node_modules/react-hot-loader/root.js\");\r\nvar react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\r\nvar react_redux_1 = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\r\nvar store_1 = __webpack_require__(/*! ./store */ \"./src/store.ts\");\r\n__webpack_require__(/*! ./main.global.css */ \"./src/main.global.css\");\r\nvar Layout_1 = __webpack_require__(/*! ./shared/Layout */ \"./src/shared/Layout/index.ts\");\r\nvar Header_1 = __webpack_require__(/*! ./shared/Header */ \"./src/shared/Header/index.ts\");\r\nvar Content_1 = __webpack_require__(/*! ./shared/Content */ \"./src/shared/Content/index.ts\");\r\nvar CardsList_1 = __webpack_require__(/*! ./shared/CardsList */ \"./src/shared/CardsList/index.ts\");\r\nvar Icon_1 = __webpack_require__(/*! ./shared/Icon */ \"./src/shared/Icon/index.ts\");\r\nvar actions_1 = __webpack_require__(/*! ./redux/common/actions */ \"./src/redux/common/actions.ts\");\r\nfunction AppComponent() {\r\n    var dispatch = react_redux_1.useDispatch();\r\n    dispatch(actions_1.getToken('access_token'));\r\n    return (react_1.default.createElement(react_redux_1.Provider, { store: store_1.store },\r\n        react_1.default.createElement(Layout_1.Layout, null,\r\n            react_1.default.createElement(Header_1.Header, null),\r\n            react_1.default.createElement(Content_1.Content, null,\r\n                react_1.default.createElement(CardsList_1.CardsList, null)),\r\n            react_1.default.createElement(Icon_1.IconSprite, null))));\r\n}\r\nexports.App = root_1.hot(function () { return AppComponent(); });\r\n\n\n//# sourceURL=webpack:///./src/App.tsx?");
 
 /***/ }),
 
@@ -3988,18 +4000,6 @@ eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create
 
 /***/ }),
 
-/***/ "./src/context/userContext.tsx":
-/*!*************************************!*\
-  !*** ./src/context/userContext.tsx ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\r\n}) : (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    o[k2] = m[k];\r\n}));\r\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\r\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\r\n}) : function(o, v) {\r\n    o[\"default\"] = v;\r\n});\r\nvar __importStar = (this && this.__importStar) || function (mod) {\r\n    if (mod && mod.__esModule) return mod;\r\n    var result = {};\r\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\r\n    __setModuleDefault(result, mod);\r\n    return result;\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.UserContextProvider = exports.userContext = void 0;\r\nvar react_1 = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\r\nvar useUserData_1 = __webpack_require__(/*! ../hooks/useUserData */ \"./src/hooks/useUserData.ts\");\r\nexports.userContext = react_1.createContext({});\r\nfunction UserContextProvider(_a) {\r\n    var children = _a.children;\r\n    var data = useUserData_1.useUserData()[0];\r\n    return react_1.default.createElement(exports.userContext.Provider, { value: data }, children);\r\n}\r\nexports.UserContextProvider = UserContextProvider;\r\n\n\n//# sourceURL=webpack:///./src/context/userContext.tsx?");
-
-/***/ }),
-
 /***/ "./src/hooks/usePostData.ts":
 /*!**********************************!*\
   !*** ./src/hooks/usePostData.ts ***!
@@ -4020,7 +4020,7 @@ eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod)
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.useUserData = void 0;\r\nvar axios_1 = __importDefault(__webpack_require__(/*! axios */ \"./node_modules/axios/index.js\"));\r\nvar react_1 = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nvar react_redux_1 = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\r\nfunction useUserData() {\r\n    var _a = react_1.useState({}), data = _a[0], setData = _a[1];\r\n    var token = react_redux_1.useSelector(function (state) { return state.token; });\r\n    react_1.useEffect(function () {\r\n        axios_1.default\r\n            .get('https://oauth.reddit.com/api/v1/me', {\r\n            headers: { Authorization: \"bearer \" + token },\r\n        })\r\n            .then(function (resp) {\r\n            var userData = resp.data;\r\n            setData({ name: userData.name, iconImg: userData.icon_img });\r\n        })\r\n            .catch(console.log);\r\n    }, [token]);\r\n    return [data];\r\n}\r\nexports.useUserData = useUserData;\r\n\n\n//# sourceURL=webpack:///./src/hooks/useUserData.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.useUserData = void 0;\r\nvar react_1 = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\r\nvar react_redux_1 = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\r\nvar actions_1 = __webpack_require__(/*! ../redux/user/actions */ \"./src/redux/user/actions.ts\");\r\nfunction useUserData() {\r\n    var data = react_redux_1.useSelector(function (state) { return state.user.data; });\r\n    var loading = react_redux_1.useSelector(function (state) { return state.user.loading; });\r\n    var token = react_redux_1.useSelector(function (state) { return state.common.token; });\r\n    var dispatch = react_redux_1.useDispatch();\r\n    react_1.useEffect(function () {\r\n        if (!token || token === 'undefined' || token === '')\r\n            return;\r\n        else\r\n            dispatch(actions_1.userDataRequestAsync(token));\r\n    }, [token]);\r\n    return { data: data, loading: loading };\r\n}\r\nexports.useUserData = useUserData;\r\n\n\n//# sourceURL=webpack:///./src/hooks/useUserData.ts?");
 
 /***/ }),
 
@@ -4035,39 +4035,51 @@ eval("var api = __webpack_require__(/*! ../node_modules/style-loader/dist/runtim
 
 /***/ }),
 
-/***/ "./src/redux/action.ts":
-/*!*****************************!*\
-  !*** ./src/redux/action.ts ***!
-  \*****************************/
+/***/ "./src/redux/common/actions.ts":
+/*!*************************************!*\
+  !*** ./src/redux/common/actions.ts ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.setToken = exports.updateComment = void 0;\r\nvar const_1 = __webpack_require__(/*! ./const */ \"./src/redux/const.ts\");\r\nexports.updateComment = function (value) {\r\n    return {\r\n        type: const_1.UPDATE_COMMENT,\r\n        field: 'commentText',\r\n        payload: { data: value },\r\n    };\r\n};\r\nexports.setToken = function (token) {\r\n    return {\r\n        type: const_1.GET_TOKEN,\r\n        field: 'token',\r\n        payload: { data: token },\r\n    };\r\n};\r\n\n\n//# sourceURL=webpack:///./src/redux/action.ts?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.getToken = exports.setToken = exports.updateComment = void 0;\r\nvar const_1 = __webpack_require__(/*! ./const */ \"./src/redux/common/const.ts\");\r\nvar axios_1 = __importDefault(__webpack_require__(/*! axios */ \"./node_modules/axios/index.js\"));\r\nexports.updateComment = function (value) {\r\n    return {\r\n        type: const_1.UPDATE_COMMENT,\r\n        field: 'commentText',\r\n        payload: { data: value },\r\n    };\r\n};\r\nexports.setToken = function (token) {\r\n    return {\r\n        type: const_1.GET_TOKEN,\r\n        field: 'token',\r\n        payload: { data: token },\r\n    };\r\n};\r\nexports.getToken = function (token) { return function (dispatch) {\r\n    console.log('getToken');\r\n    axios_1.default\r\n        .post('https://www.reddit.com/api/v1/access_token', \"grant_type=authorization_code&code=\" + token + \"&redirect_uri=http://localhost:3000/auth\", {\r\n        auth: {\r\n            username: 'JgKiK8iIy9px3g',\r\n            password: 'AZM8u-wJSj256QrLk44inAdn65KXjQ',\r\n        },\r\n        headers: { 'Content-type': 'application/x-www-form-urlencoded' },\r\n    })\r\n        .then(function (_a) {\r\n        var data = _a.data;\r\n        console.log(data);\r\n        dispatch(exports.setToken(data['access_token']));\r\n    })\r\n        .catch(console.log);\r\n}; };\r\n\n\n//# sourceURL=webpack:///./src/redux/common/actions.ts?");
 
 /***/ }),
 
-/***/ "./src/redux/const.ts":
-/*!****************************!*\
-  !*** ./src/redux/const.ts ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.GET_TOKEN = exports.UPDATE_COMMENT = void 0;\r\nexports.UPDATE_COMMENT = 'UPDATE_COMMENT';\r\nexports.GET_TOKEN = 'GET_TOKEN';\r\n\n\n//# sourceURL=webpack:///./src/redux/const.ts?");
-
-/***/ }),
-
-/***/ "./src/redux/initialState.ts":
+/***/ "./src/redux/common/const.ts":
 /*!***********************************!*\
-  !*** ./src/redux/initialState.ts ***!
+  !*** ./src/redux/common/const.ts ***!
   \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.initialState = void 0;\r\nexports.initialState = {\r\n    commentText: 'Hello, Skillbox!',\r\n    token: '',\r\n};\r\n\n\n//# sourceURL=webpack:///./src/redux/initialState.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.GET_TOKEN = exports.UPDATE_COMMENT = void 0;\r\nexports.UPDATE_COMMENT = 'UPDATE_COMMENT';\r\nexports.GET_TOKEN = 'GET_TOKEN';\r\n\n\n//# sourceURL=webpack:///./src/redux/common/const.ts?");
+
+/***/ }),
+
+/***/ "./src/redux/common/initialState.ts":
+/*!******************************************!*\
+  !*** ./src/redux/common/initialState.ts ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.initialState = void 0;\r\nexports.initialState = {\r\n    commentText: 'Hello, Skillbox!',\r\n    token: '',\r\n};\r\n\n\n//# sourceURL=webpack:///./src/redux/common/initialState.ts?");
+
+/***/ }),
+
+/***/ "./src/redux/common/reducer.ts":
+/*!*************************************!*\
+  !*** ./src/redux/common/reducer.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __assign = (this && this.__assign) || function () {\r\n    __assign = Object.assign || function(t) {\r\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\r\n            s = arguments[i];\r\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\r\n                t[p] = s[p];\r\n        }\r\n        return t;\r\n    };\r\n    return __assign.apply(this, arguments);\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.commonReducer = void 0;\r\nvar initialState_1 = __webpack_require__(/*! ./initialState */ \"./src/redux/common/initialState.ts\");\r\nvar const_1 = __webpack_require__(/*! ./const */ \"./src/redux/common/const.ts\");\r\nexports.commonReducer = function (state, action) {\r\n    var _a;\r\n    if (state === void 0) { state = initialState_1.initialState; }\r\n    console.log(action.type);\r\n    switch (action.type) {\r\n        case const_1.UPDATE_COMMENT:\r\n        case const_1.GET_TOKEN:\r\n            return __assign(__assign({}, state), (_a = {}, _a[action.field] = action.payload.data, _a));\r\n        default:\r\n            return state;\r\n    }\r\n};\r\n\n\n//# sourceURL=webpack:///./src/redux/common/reducer.ts?");
 
 /***/ }),
 
@@ -4079,7 +4091,55 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nex
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __assign = (this && this.__assign) || function () {\r\n    __assign = Object.assign || function(t) {\r\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\r\n            s = arguments[i];\r\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\r\n                t[p] = s[p];\r\n        }\r\n        return t;\r\n    };\r\n    return __assign.apply(this, arguments);\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.rootReducer = void 0;\r\nvar initialState_1 = __webpack_require__(/*! ./initialState */ \"./src/redux/initialState.ts\");\r\nvar const_1 = __webpack_require__(/*! ./const */ \"./src/redux/const.ts\");\r\nexports.rootReducer = function (state, action) {\r\n    var _a;\r\n    if (state === void 0) { state = initialState_1.initialState; }\r\n    switch (action.type) {\r\n        case const_1.UPDATE_COMMENT:\r\n        case const_1.GET_TOKEN:\r\n            return __assign(__assign({}, state), (_a = {}, _a[action.field] = action.payload.data, _a));\r\n        default:\r\n            return state;\r\n    }\r\n};\r\n\n\n//# sourceURL=webpack:///./src/redux/rootReducer.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.rootReducer = void 0;\r\nvar redux_1 = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\r\nvar reducer_1 = __webpack_require__(/*! ./user/reducer */ \"./src/redux/user/reducer.ts\");\r\nvar reducer_2 = __webpack_require__(/*! ./common/reducer */ \"./src/redux/common/reducer.ts\");\r\nexports.rootReducer = redux_1.combineReducers({\r\n    user: reducer_1.userReducer,\r\n    common: reducer_2.commonReducer,\r\n});\r\n\n\n//# sourceURL=webpack:///./src/redux/rootReducer.ts?");
+
+/***/ }),
+
+/***/ "./src/redux/user/actions.ts":
+/*!***********************************!*\
+  !*** ./src/redux/user/actions.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.userDataRequestAsync = exports.userDataRequestError = exports.userDataRequestSuccess = exports.userDataRequest = void 0;\r\nvar axios_1 = __importDefault(__webpack_require__(/*! axios */ \"./node_modules/axios/index.js\"));\r\nvar const_1 = __webpack_require__(/*! ./const */ \"./src/redux/user/const.ts\");\r\nexports.userDataRequest = function () {\r\n    return {\r\n        type: const_1.GET_USER_DATA,\r\n    };\r\n};\r\nexports.userDataRequestSuccess = function (data) {\r\n    return {\r\n        type: const_1.GET_USER_DATA_SUCCESS,\r\n        data: data,\r\n    };\r\n};\r\nexports.userDataRequestError = function (error) {\r\n    return {\r\n        type: const_1.GET_USER_DATA_ERROR,\r\n        error: error,\r\n    };\r\n};\r\nexports.userDataRequestAsync = function (token) { return function (dispatch) {\r\n    dispatch(exports.userDataRequest());\r\n    axios_1.default\r\n        .get('https://oauth.reddit.com/api/v1/me', {\r\n        headers: { Authorization: \"bearer \" + token },\r\n    })\r\n        .then(function (resp) {\r\n        var userData = resp.data;\r\n        dispatch(exports.userDataRequestSuccess({\r\n            name: userData.name,\r\n            iconImg: userData.icon_img,\r\n        }));\r\n    })\r\n        .catch(function (error) {\r\n        console.log(error);\r\n        dispatch(exports.userDataRequestError(error));\r\n    });\r\n}; };\r\n\n\n//# sourceURL=webpack:///./src/redux/user/actions.ts?");
+
+/***/ }),
+
+/***/ "./src/redux/user/const.ts":
+/*!*********************************!*\
+  !*** ./src/redux/user/const.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.GET_USER_DATA_ERROR = exports.GET_USER_DATA_SUCCESS = exports.GET_USER_DATA = void 0;\r\nexports.GET_USER_DATA = 'GET_USER_DATA';\r\nexports.GET_USER_DATA_SUCCESS = 'GET_USER_DATA_SUCCESS';\r\nexports.GET_USER_DATA_ERROR = 'GET_USER_DATA_ERROR';\r\n\n\n//# sourceURL=webpack:///./src/redux/user/const.ts?");
+
+/***/ }),
+
+/***/ "./src/redux/user/initialState.ts":
+/*!****************************************!*\
+  !*** ./src/redux/user/initialState.ts ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.initialState = void 0;\r\nexports.initialState = {\r\n    data: { name: '', iconImg: '' },\r\n    loading: false,\r\n    error: null,\r\n};\r\n\n\n//# sourceURL=webpack:///./src/redux/user/initialState.ts?");
+
+/***/ }),
+
+/***/ "./src/redux/user/reducer.ts":
+/*!***********************************!*\
+  !*** ./src/redux/user/reducer.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __assign = (this && this.__assign) || function () {\r\n    __assign = Object.assign || function(t) {\r\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\r\n            s = arguments[i];\r\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\r\n                t[p] = s[p];\r\n        }\r\n        return t;\r\n    };\r\n    return __assign.apply(this, arguments);\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.userReducer = void 0;\r\nvar initialState_1 = __webpack_require__(/*! ./initialState */ \"./src/redux/user/initialState.ts\");\r\nvar const_1 = __webpack_require__(/*! ./const */ \"./src/redux/user/const.ts\");\r\nexports.userReducer = function (state, action) {\r\n    if (state === void 0) { state = initialState_1.initialState; }\r\n    switch (action.type) {\r\n        case const_1.GET_USER_DATA_SUCCESS:\r\n            return __assign(__assign({}, state), { data: __assign(__assign({}, state.data), action.data), loading: false });\r\n        case const_1.GET_USER_DATA_ERROR:\r\n            return __assign(__assign({}, state), { error: action.error || null, loading: false });\r\n        case const_1.GET_USER_DATA:\r\n            return {\r\n                data: initialState_1.initialState.data,\r\n                error: null,\r\n                loading: true,\r\n            };\r\n        default:\r\n            return state;\r\n    }\r\n};\r\n\n\n//# sourceURL=webpack:///./src/redux/user/reducer.ts?");
 
 /***/ }),
 
@@ -4371,7 +4431,7 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nex
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\r\n}) : (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    o[k2] = m[k];\r\n}));\r\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\r\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\r\n}) : function(o, v) {\r\n    o[\"default\"] = v;\r\n});\r\nvar __importStar = (this && this.__importStar) || function (mod) {\r\n    if (mod && mod.__esModule) return mod;\r\n    var result = {};\r\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\r\n    __setModuleDefault(result, mod);\r\n    return result;\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.CommentForm = void 0;\r\nvar react_1 = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\r\nvar react_redux_1 = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\r\nvar action_1 = __webpack_require__(/*! ../../redux/action */ \"./src/redux/action.ts\");\r\nvar CommentFormControlled_1 = __webpack_require__(/*! ./CommentFormControlled */ \"./src/shared/CommentForm/CommentFormControlled.tsx\");\r\nfunction CommentForm(_a) {\r\n    var type = _a.type;\r\n    var dispatch = react_redux_1.useDispatch();\r\n    var _b = type === 'reply'\r\n        ? react_1.useState('')\r\n        : [\r\n            react_redux_1.useSelector(function (state) { return state.commentText; }),\r\n            function (val) { return dispatch(action_1.updateComment(val)); },\r\n        ], value = _b[0], onChange = _b[1];\r\n    function handleChange(event) {\r\n        onChange(event.target.value);\r\n    }\r\n    function handleSubmit(event) {\r\n        event.preventDefault();\r\n        console.log(value);\r\n    }\r\n    react_1.useEffect(function () {\r\n        if (type === 'reply')\r\n            onChange('Михаил Рогов, ');\r\n    }, []);\r\n    return (react_1.default.createElement(CommentFormControlled_1.CommentFormControlled, { value: value, buttonText: type === 'reply' ? 'Reply' : 'Comment', onChange: handleChange, onSubmit: handleSubmit }));\r\n}\r\nexports.CommentForm = CommentForm;\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/CommentFormContainer.tsx?");
+eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\r\n}) : (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    o[k2] = m[k];\r\n}));\r\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\r\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\r\n}) : function(o, v) {\r\n    o[\"default\"] = v;\r\n});\r\nvar __importStar = (this && this.__importStar) || function (mod) {\r\n    if (mod && mod.__esModule) return mod;\r\n    var result = {};\r\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\r\n    __setModuleDefault(result, mod);\r\n    return result;\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.CommentForm = void 0;\r\nvar react_1 = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\r\nvar react_redux_1 = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\r\nvar actions_1 = __webpack_require__(/*! ../../redux/common/actions */ \"./src/redux/common/actions.ts\");\r\nvar CommentFormControlled_1 = __webpack_require__(/*! ./CommentFormControlled */ \"./src/shared/CommentForm/CommentFormControlled.tsx\");\r\nfunction CommentForm(_a) {\r\n    var type = _a.type;\r\n    var dispatch = react_redux_1.useDispatch();\r\n    var _b = type === 'reply'\r\n        ? react_1.useState('')\r\n        : [\r\n            react_redux_1.useSelector(function (state) { return state.commentText; }),\r\n            function (val) { return dispatch(actions_1.updateComment(val)); },\r\n        ], value = _b[0], onChange = _b[1];\r\n    function handleChange(event) {\r\n        onChange(event.target.value);\r\n    }\r\n    function handleSubmit(event) {\r\n        event.preventDefault();\r\n        console.log(value);\r\n    }\r\n    react_1.useEffect(function () {\r\n        if (type === 'reply')\r\n            onChange('Михаил Рогов, ');\r\n    }, []);\r\n    return (react_1.default.createElement(CommentFormControlled_1.CommentFormControlled, { value: value, buttonText: type === 'reply' ? 'Reply' : 'Comment', onChange: handleChange, onSubmit: handleSubmit }));\r\n}\r\nexports.CommentForm = CommentForm;\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/CommentFormContainer.tsx?");
 
 /***/ }),
 
@@ -4675,7 +4735,7 @@ eval("var api = __webpack_require__(/*! ../../../../node_modules/style-loader/di
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\r\n}) : (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    o[k2] = m[k];\r\n}));\r\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\r\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\r\n}) : function(o, v) {\r\n    o[\"default\"] = v;\r\n});\r\nvar __importStar = (this && this.__importStar) || function (mod) {\r\n    if (mod && mod.__esModule) return mod;\r\n    var result = {};\r\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\r\n    __setModuleDefault(result, mod);\r\n    return result;\r\n};\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.UserBlock = void 0;\r\nvar react_1 = __importStar(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\r\nvar Icon_1 = __webpack_require__(/*! ../../Icon */ \"./src/shared/Icon/index.ts\");\r\nvar Text_1 = __webpack_require__(/*! ../../Text */ \"./src/shared/Text/index.ts\");\r\nvar Text_2 = __webpack_require__(/*! ../../Text */ \"./src/shared/Text/index.ts\");\r\nvar userContext_1 = __webpack_require__(/*! ../../../context/userContext */ \"./src/context/userContext.tsx\");\r\nvar action_1 = __webpack_require__(/*! ../../../redux/action */ \"./src/redux/action.ts\");\r\nvar react_redux_1 = __webpack_require__(/*! react-redux */ \"./node_modules/react-redux/es/index.js\");\r\nvar UserBlock_css_1 = __importDefault(__webpack_require__(/*! ./UserBlock.css */ \"./src/shared/Header/UserBlock/UserBlock.css\"));\r\nfunction UserBlock() {\r\n    var _a = react_1.useContext(userContext_1.userContext), iconImg = _a.iconImg, name = _a.name;\r\n    var dispatch = react_redux_1.useDispatch();\r\n    react_1.useEffect(function () {\r\n        if (window.__token__) {\r\n            dispatch(action_1.setToken(window.__token__));\r\n        }\r\n    }, []);\r\n    return (react_1.default.createElement(\"a\", { href: \"https://www.reddit.com/api/v1/authorize?client_id=JgKiK8iIy9px3g&response_type=code&state=random_string&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read submit identity\", className: UserBlock_css_1.default.userBox },\r\n        react_1.default.createElement(\"div\", { className: UserBlock_css_1.default.avatarBox }, iconImg ? (react_1.default.createElement(\"img\", { src: iconImg, alt: \"user avatar\", className: UserBlock_css_1.default.avatarImage })) : (react_1.default.createElement(Icon_1.Icon, { icon: \"avatar\", size: 28 }))),\r\n        react_1.default.createElement(\"div\", { className: UserBlock_css_1.default.username },\r\n            react_1.default.createElement(Text_1.Text, { size: 16, color: name ? Text_2.EColor.black : Text_2.EColor.grey99 }, name || 'Аноним'))));\r\n}\r\nexports.UserBlock = UserBlock;\r\n\n\n//# sourceURL=webpack:///./src/shared/Header/UserBlock/UserBlock.tsx?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.UserBlock = void 0;\r\nvar react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\r\nvar Icon_1 = __webpack_require__(/*! ../../Icon */ \"./src/shared/Icon/index.ts\");\r\nvar Text_1 = __webpack_require__(/*! ../../Text */ \"./src/shared/Text/index.ts\");\r\nvar UserBlock_css_1 = __importDefault(__webpack_require__(/*! ./UserBlock.css */ \"./src/shared/Header/UserBlock/UserBlock.css\"));\r\nvar useUserData_1 = __webpack_require__(/*! ../../../hooks/useUserData */ \"./src/hooks/useUserData.ts\");\r\nvar Loading_1 = __webpack_require__(/*! ../../Loading */ \"./src/shared/Loading/index.ts\");\r\nfunction UserBlock() {\r\n    var _a = useUserData_1.useUserData(), _b = _a.data, iconImg = _b.iconImg, name = _b.name, loading = _a.loading;\r\n    return (react_1.default.createElement(\"a\", { href: \"https://www.reddit.com/api/v1/authorize?client_id=JgKiK8iIy9px3g&response_type=code&state=random_string&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read submit identity\", className: UserBlock_css_1.default.userBox },\r\n        react_1.default.createElement(\"div\", { className: UserBlock_css_1.default.avatarBox }, iconImg ? (react_1.default.createElement(\"img\", { src: iconImg, alt: \"user avatar\", className: UserBlock_css_1.default.avatarImage })) : (react_1.default.createElement(Icon_1.Icon, { icon: \"avatar\", size: 28 }))),\r\n        react_1.default.createElement(\"div\", { className: UserBlock_css_1.default.username }, loading ? (react_1.default.createElement(Loading_1.Loading, null)) : (react_1.default.createElement(Text_1.Text, { size: 16, color: name ? Text_1.EColor.black : Text_1.EColor.grey99 }, name || 'Аноним')))));\r\n}\r\nexports.UserBlock = UserBlock;\r\n\n\n//# sourceURL=webpack:///./src/shared/Header/UserBlock/UserBlock.tsx?");
 
 /***/ }),
 
@@ -4808,6 +4868,30 @@ eval("var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/
 
 /***/ }),
 
+/***/ "./src/shared/Loading/Loading.tsx":
+/*!****************************************!*\
+  !*** ./src/shared/Loading/Loading.tsx ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.Loading = void 0;\r\nvar react_1 = __importDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));\r\nvar Text_1 = __webpack_require__(/*! ../Text */ \"./src/shared/Text/index.ts\");\r\nfunction Loading() {\r\n    return (react_1.default.createElement(Text_1.Text, { size: 16, color: Text_1.EColor.grey99 }, \"\\u0417\\u0430\\u0433\\u0440\\u0443\\u0437\\u043A\\u0430..\"));\r\n}\r\nexports.Loading = Loading;\r\n\n\n//# sourceURL=webpack:///./src/shared/Loading/Loading.tsx?");
+
+/***/ }),
+
+/***/ "./src/shared/Loading/index.ts":
+/*!*************************************!*\
+  !*** ./src/shared/Loading/index.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\r\n}) : (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    o[k2] = m[k];\r\n}));\r\nvar __exportStar = (this && this.__exportStar) || function(m, exports) {\r\n    for (var p in m) if (p !== \"default\" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\n__exportStar(__webpack_require__(/*! ./Loading */ \"./src/shared/Loading/Loading.tsx\"), exports);\r\n\n\n//# sourceURL=webpack:///./src/shared/Loading/index.ts?");
+
+/***/ }),
+
 /***/ "./src/shared/Post/Post.tsx":
 /*!**********************************!*\
   !*** ./src/shared/Post/Post.tsx ***!
@@ -4886,7 +4970,7 @@ eval("var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.store = void 0;\r\nvar redux_1 = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\r\nvar redux_devtools_extension_1 = __webpack_require__(/*! redux-devtools-extension */ \"./node_modules/redux-devtools-extension/index.js\");\r\nvar rootReducer_1 = __webpack_require__(/*! ./redux/rootReducer */ \"./src/redux/rootReducer.ts\");\r\nexports.store = redux_1.createStore(rootReducer_1.rootReducer, redux_devtools_extension_1.composeWithDevTools(redux_1.applyMiddleware()));\r\n\n\n//# sourceURL=webpack:///./src/store.ts?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.store = void 0;\r\nvar redux_1 = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\r\nvar redux_devtools_extension_1 = __webpack_require__(/*! redux-devtools-extension */ \"./node_modules/redux-devtools-extension/index.js\");\r\nvar rootReducer_1 = __webpack_require__(/*! ./redux/rootReducer */ \"./src/redux/rootReducer.ts\");\r\nvar redux_thunk_1 = __importDefault(__webpack_require__(/*! redux-thunk */ \"./node_modules/redux-thunk/es/index.js\"));\r\n// const ping: Middleware = (store) => (next) => (action) => {\r\n//   console.log('ping');\r\n//   next(action);\r\n// };\r\nexports.store = redux_1.createStore(rootReducer_1.rootReducer, redux_devtools_extension_1.composeWithDevTools(redux_1.applyMiddleware(redux_thunk_1.default)));\r\n\n\n//# sourceURL=webpack:///./src/store.ts?");
 
 /***/ }),
 
