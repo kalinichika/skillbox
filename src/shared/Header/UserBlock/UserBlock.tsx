@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Icon } from '../../Icon';
 import { Text, EColor } from '../../Text';
 import styles from './UserBlock.css';
 import { useUserData } from '../../../hooks/useUserData';
 import { Loading } from '../../Loading';
+import { setToken } from '../../../redux/common/actions';
+import { useDispatch } from 'react-redux';
 
 export function UserBlock() {
   const {
     data: { iconImg, name },
     loading,
   } = useUserData();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (window.__token__) {
+      dispatch(setToken(window.__token__));
+    }
+  }, []);
 
   return (
     <a

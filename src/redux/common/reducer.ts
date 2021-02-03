@@ -6,7 +6,6 @@ export const commonReducer: Reducer<CommonState> = (
   state = initialState,
   action
 ) => {
-  console.log(action.type);
   switch (action.type) {
     case UPDATE_COMMENT:
     case GET_TOKEN:
