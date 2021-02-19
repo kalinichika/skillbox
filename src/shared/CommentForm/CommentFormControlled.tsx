@@ -7,7 +7,7 @@ interface ICommentForm {
   value: string;
   buttonText: string;
   onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  onSubmit: (value: string) => void;
+  onSubmit: () => void;
 }
 
 export function CommentFormControlled({
@@ -20,31 +20,24 @@ export function CommentFormControlled({
 
   useEffect(() => {
     ref.current?.focus();
-  }, []);
-
-  interface Values {
-    comment: string;
-  }
+  });
 
   return (
     <div className={styles.form}>
       <Formik
         initialValues={{ comment: value }}
-        onSubmit={(
-          values: Values,
-          { setSubmitting }: FormikHelpers<Values>
-        ) => {
-          onSubmit(values.comment);
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 500);
-        }}
+        onSubmit={onSubmit}
         className={styles.form}
       >
         <Form>
           <label htmlFor="comment">Comment</label>
-          <Field name="comment" type="text" onChange={onChange} />
+          <Field
+            value={value}
+            name="comment"
+            type="text"
+            onChange={onChange}
+            innerRef={ref}
+          />
           <div className={styles.buttonsBlock}>
             <button type="submit" className={styles.button}>
               {buttonText}

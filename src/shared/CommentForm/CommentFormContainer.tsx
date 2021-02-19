@@ -27,7 +27,7 @@ export function CommentForm({ type }: ICommentForm) {
     onChange(event.target.value);
   }
 
-  function handleSubmit(value: string) {
+  function handleSubmit() {
     console.log('Submit: ', value);
   }
 
