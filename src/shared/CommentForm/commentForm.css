@@ -3,7 +3,7 @@
   margin-bottom: 32px;
 }
 
-.input {
+.form input {
   width: 100%;
   min-width: 100%;
   max-width: 100%;
@@ -44,4 +44,8 @@
   font-size: 16px;
   line-height: 16px;
   text-align: center;
+}
+
+.form label {
+  display: none;
 }

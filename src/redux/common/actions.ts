@@ -2,7 +2,6 @@ import { ActionCreator, AnyAction } from 'redux';
 import { UPDATE_COMMENT, GET_TOKEN } from './const';
 
 export const updateComment: ActionCreator<AnyAction> = (value: string) => {
-  console.log(value);
   return {
     type: UPDATE_COMMENT,
     field: 'commentText',
