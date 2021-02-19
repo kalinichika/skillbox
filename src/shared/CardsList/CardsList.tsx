@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { Card } from './Card';
 import { Icon } from '../Icon';
 import { Dropdown } from '../Dropdown';
@@ -116,6 +116,26 @@ export function CardsList() {
   };
 
   const classesBookmarksList = classNames(styles.bookmarksList);
+
+  const bottomOfList = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      () => {
+        console.log('load more');
+      },
+      { rootMargin: '10px' }
+    );
+
+    if (bottomOfList.current) observer.observe(bottomOfList.current);
+
+    return () => {
+      if (bottomOfList.current) {
+        observer.unobserve(bottomOfList.current);
+      }
+    };
+  }, [bottomOfList.current]);
+
   return (
     <>
       {bookmarks.length !== 0 && (
@@ -134,32 +154,31 @@ export function CardsList() {
           <GenericList list={getBookmarksList()} />
         </Dropdown>
       )}
-      {loading ? (
-        <div className={styles.info}>Загрузка...</div>
-      ) : error ? (
-        <div className={styles.error}>{error.toString()}</div>
-      ) : data.length === 0 ? (
-        <div className={styles.info}>Нет данных</div>
-      ) : (
-        <ul className={styles.cardsList}>
-          {data.map((dataCard: IPostData) => (
-            <Card
-              {...dataCard}
-              key={dataCard.id}
-              hiddenCard={hiddenCard}
-              moveHandler={moveHandler}
-              changeBookmark={changeBookmark}
-              inBookmarks={bookmarks.includes(dataCard.id)}
-              karmaValue={karmaValues[dataCard.id]}
-              setKarmaValue={(id: string, value: number) =>
-                setKarmaValue(id, value)
-              }
-              openedMenuId={openedMenuId}
-              setOpenedMenuId={setOpenedMenuId}
-            />
-          ))}
-        </ul>
-      )}
+
+      <ul className={styles.cardsList}>
+        {data.map((dataCard: IPostData) => (
+          <Card
+            {...dataCard}
+            key={dataCard.id}
+            hiddenCard={hiddenCard}
+            moveHandler={moveHandler}
+            changeBookmark={changeBookmark}
+            inBookmarks={bookmarks.includes(dataCard.id)}
+            karmaValue={karmaValues[dataCard.id]}
+            setKarmaValue={(id: string, value: number) =>
+              setKarmaValue(id, value)
+            }
+            openedMenuId={openedMenuId}
+            setOpenedMenuId={setOpenedMenuId}
+          />
+        ))}
+      </ul>
+
+      <div ref={bottomOfList} />
+
+      {loading && <div className={styles.info}>Загрузка...</div>}
+      {error && <div className={styles.error}>{error.toString()}</div>}
+      {data.length === 0 && <div className={styles.info}>Нет данных</div>}
     </>
   );
 }

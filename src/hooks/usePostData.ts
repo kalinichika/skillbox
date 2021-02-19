@@ -35,7 +35,6 @@ export function usePostData() {
     (state) => state.common.token
   );
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (!token || token === 'undefined' || token === '') return;
     dispatch(getPostData(token));

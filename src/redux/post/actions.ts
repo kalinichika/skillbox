@@ -32,11 +32,9 @@ interface IPostContextData {
     title: string;
     num_comments: number;
     ups: number;
-    sr_detail: {
-      icon_img: string;
-      header_img: string;
-      created_utc: number;
-    };
+    author_flair_text: string;
+    created_utc: number;
+    thumbnail: string;
   };
 }
 
@@ -102,24 +100,22 @@ export const getPostData = (
             author = '',
             ups = 0,
             num_comments = 0,
-            sr_detail = {
-              icon_img: '',
-              header_img: '',
-              created_utc: 0,
-            },
+            author_flair_text = '',
+            created_utc = 0,
+            thumbnail = '',
           } = data || {};
           return {
-            id: id,
-            url: url,
-            title: title,
-            time: new Date(new Date().getTime() - sr_detail.created_utc),
-            preview: sr_detail.header_img,
+            id,
+            url,
+            title,
+            time: new Date(new Date().getTime() - created_utc),
+            preview: url,
             karmaValue: ups,
             commentValue: num_comments,
             author: {
               name: author,
               href: '#user-url',
-              avatar: sr_detail.icon_img,
+              avatar: thumbnail,
             },
           };
         }
