@@ -18,9 +18,10 @@ export function useUserData() {
     boolean
   >((state) => state.user.loading);
 
-  const token = useSelector<{ user: UserState; common: CommonState }, string>(
-    (state) => state.common.token
-  );
+  const token = useSelector<
+    { user: UserState; common: CommonState },
+    string | undefined
+  >((state) => state.common.token);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!token || token === 'undefined' || token === '') return;

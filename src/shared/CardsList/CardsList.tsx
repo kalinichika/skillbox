@@ -28,7 +28,7 @@ export function CardsList() {
     [N: string]: number;
   }
 
-  const { contextData, loading } = usePostData();
+  const { contextData, loading, error } = usePostData();
 
   const [data, setData] = React.useState<IPostData[]>(contextData);
   const [openedMenuId, setOpenedMenuId] = React.useState('');
@@ -116,7 +116,6 @@ export function CardsList() {
   };
 
   const classesBookmarksList = classNames(styles.bookmarksList);
-
   return (
     <>
       {bookmarks.length !== 0 && (
@@ -135,24 +134,32 @@ export function CardsList() {
           <GenericList list={getBookmarksList()} />
         </Dropdown>
       )}
-      <ul className={styles.cardsList}>
-        {data.map((dataCard: IPostData) => (
-          <Card
-            {...dataCard}
-            key={dataCard.id}
-            hiddenCard={hiddenCard}
-            moveHandler={moveHandler}
-            changeBookmark={changeBookmark}
-            inBookmarks={bookmarks.includes(dataCard.id)}
-            karmaValue={karmaValues[dataCard.id]}
-            setKarmaValue={(id: string, value: number) =>
-              setKarmaValue(id, value)
-            }
-            openedMenuId={openedMenuId}
-            setOpenedMenuId={setOpenedMenuId}
-          />
-        ))}
-      </ul>
+      {loading ? (
+        <div className={styles.info}>Загрузка...</div>
+      ) : error ? (
+        <div className={styles.error}>{error.toString()}</div>
+      ) : data.length === 0 ? (
+        <div className={styles.info}>Нет данных</div>
+      ) : (
+        <ul className={styles.cardsList}>
+          {data.map((dataCard: IPostData) => (
+            <Card
+              {...dataCard}
+              key={dataCard.id}
+              hiddenCard={hiddenCard}
+              moveHandler={moveHandler}
+              changeBookmark={changeBookmark}
+              inBookmarks={bookmarks.includes(dataCard.id)}
+              karmaValue={karmaValues[dataCard.id]}
+              setKarmaValue={(id: string, value: number) =>
+                setKarmaValue(id, value)
+              }
+              openedMenuId={openedMenuId}
+              setOpenedMenuId={setOpenedMenuId}
+            />
+          ))}
+        </ul>
+      )}
     </>
   );
 }

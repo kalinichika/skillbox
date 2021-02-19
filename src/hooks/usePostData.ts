@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { isConditionalExpression } from 'typescript';
+import { CommonState } from '../redux/common/initialState';
 import { getPostData } from '../redux/post/actions';
 
 import { PostState } from '../redux/post/initialState';
@@ -26,11 +28,18 @@ export function usePostData() {
     (state) => state.post.loading
   );
 
+  const error = useSelector<{ post: PostState }, Object | String | null>(
+    (state) => state.post.error
+  );
+  const token = useSelector<{ common: CommonState }, string | undefined>(
+    (state) => state.common.token
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPostData());
-  }, []);
+    if (!token || token === 'undefined' || token === '') return;
+    dispatch(getPostData(token));
+  }, [token]);
 
-  return { contextData: data, loading };
+  return { contextData: data, loading, error };
 }

@@ -39,3 +39,23 @@
     right: 30px;
   }
 }
+
+.error,
+.info {
+  position: relative;
+  text-align: center;
+  font-size: 16px;
+  height: 72px;
+  z-index: 10;
+  padding: 16px;
+  padding-top: 24px;
+  background-color: white;
+}
+
+.error {
+  color: var(--orange);
+}
+
+.info {
+  color: var(--grey66);
+}

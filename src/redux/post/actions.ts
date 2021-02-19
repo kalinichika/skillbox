@@ -75,7 +75,9 @@ export const postRequestError: ActionCreator<PostRequestActionError> = (
   };
 };
 
-export const getPostData = (): ThunkAction<
+export const getPostData = (
+  token: string
+): ThunkAction<
   void,
   { common: CommonState; user: UserState },
   unknown,
@@ -84,9 +86,10 @@ export const getPostData = (): ThunkAction<
   dispatch(postRequest());
 
   axios
-    .get('https://www.reddit.com/r/popular/best.json?sr_detail=true', {
+    .get('https://oauth.reddit.com/rising/', {
       headers: {
         'Content-type': `application/json`,
+        Authorization: `bearer ${token}`,
       },
     })
     .then((resp) => {
