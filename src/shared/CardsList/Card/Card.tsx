@@ -20,7 +20,6 @@ interface ICard {
     avatar: string;
     href: string;
   };
-  moveHandler: (id: string, text: string) => void;
   setKarmaValue: (id: string, value: number) => void;
   hiddenCard: (id: string) => void;
   changeBookmark: (id: string, type: 'add' | 'delete') => void;
@@ -38,7 +37,6 @@ export function Card({
   author,
   karmaValue,
   commentsValue,
-  moveHandler,
   setKarmaValue,
   hiddenCard,
   changeBookmark,
@@ -64,7 +62,6 @@ export function Card({
       <Menu
         setOpenedMenuId={setOpenedMenuId}
         openedMenuId={openedMenuId}
-        moveHandler={moveHandler}
         hiddenCard={hiddenCard}
         addBookmark={(id: string) => changeBookmark(id, 'add')}
         cardId={id}

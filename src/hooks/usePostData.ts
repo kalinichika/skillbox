@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { isConditionalExpression } from 'typescript';
 import { CommonState } from '../redux/common/initialState';
 import { getPostData } from '../redux/post/actions';
 
@@ -27,6 +26,9 @@ export function usePostData() {
   const loading = useSelector<{ post: PostState }, boolean>(
     (state) => state.post.loading
   );
+  const after = useSelector<{ post: PostState }, string>(
+    (state) => state.post.after
+  );
 
   const error = useSelector<{ post: PostState }, Object | String | null>(
     (state) => state.post.error
@@ -37,8 +39,8 @@ export function usePostData() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!token || token === 'undefined' || token === '') return;
-    dispatch(getPostData(token));
+    dispatch(getPostData({ token: token, after: after }));
   }, [token]);
 
-  return { contextData: data, loading, error };
+  return { data, loading, error };
 }

@@ -5,6 +5,7 @@ import {
   GET_POST_DATA,
   GET_POST_DATA_SUCCESS,
   GET_POST_DATA_ERROR,
+  SET_AFTER,
 } from './const';
 import { CommonState } from '../common/initialState';
 import { UserState } from '../user/initialState';
@@ -73,9 +74,24 @@ export const postRequestError: ActionCreator<PostRequestActionError> = (
   };
 };
 
-export const getPostData = (
-  token: string
-): ThunkAction<
+export type SetAfterAction = {
+  type: typeof SET_AFTER;
+  data: string;
+};
+export const setAfter = (after: string) => {
+  return {
+    type: SET_AFTER,
+    data: after,
+  };
+};
+
+export const getPostData = ({
+  token,
+  after,
+}: {
+  token: string;
+  after: string;
+}): ThunkAction<
   void,
   { common: CommonState; user: UserState },
   unknown,
@@ -84,15 +100,24 @@ export const getPostData = (
   dispatch(postRequest());
 
   axios
-    .get('https://oauth.reddit.com/rising/', {
+    .get('https://oauth.reddit.com/rising', {
       headers: {
         'Content-type': `application/json`,
         Authorization: `bearer ${token}`,
       },
+      params: {
+        limit: 10,
+        after,
+      },
     })
-    .then((resp) => {
-      const formattedPostData = resp.data.data.children.map(
-        ({ data }: IPostContextData) => {
+    .then(
+      ({
+        data: {
+          data: { after, children },
+        },
+      }) => {
+        console.log('get post data!!!!!!');
+        const formattedPostData = children.map(({ data }: IPostContextData) => {
           const {
             id = '',
             url = '',
@@ -100,10 +125,12 @@ export const getPostData = (
             author = '',
             ups = 0,
             num_comments = 0,
-            author_flair_text = '',
             created_utc = 0,
             thumbnail = '',
           } = data || {};
+
+          dispatch(setAfter(after));
+
           return {
             id,
             url,
@@ -118,10 +145,10 @@ export const getPostData = (
               avatar: thumbnail,
             },
           };
-        }
-      );
-      dispatch(postRequestSuccess(formattedPostData));
-    })
+        });
+        dispatch(postRequestSuccess(formattedPostData));
+      }
+    )
     .catch((error) => {
       console.log(error);
       dispatch(postRequestError(error));

@@ -19,7 +19,6 @@ const LIST2 = [
 
 interface IMenu {
   cardId: string;
-  moveHandler: (id: string, text: string) => void;
   hiddenCard: (id: string) => void;
   addBookmark: (id: string) => void;
   setOpenedMenuId: (id: string) => void;
@@ -37,7 +36,6 @@ interface IListDropdown {
 }
 
 export function Menu({
-  moveHandler,
   hiddenCard,
   addBookmark,
   cardId,
@@ -55,9 +53,7 @@ export function Menu({
     header: string,
     cardId: string
   ) => {
-    if (header === 'Moved') {
-      moveHandler(cardId, text);
-    } else if (header === 'Operations') {
+    if (header === 'Operations') {
       if (text === LIST2[0].text) {
         hiddenCard(cardId);
       } else {

@@ -1,7 +1,7 @@
 import React, { createContext } from 'react';
 import { usePostData } from '../hooks/usePostData';
 
-interface IPostContextData {
+interface IPostData {
   id: string;
   url: string;
   title: string;
@@ -15,10 +15,11 @@ interface IPostContextData {
     avatar: string;
   };
 }
+
 export const postContext = createContext<{
-  contextData: IPostContextData[];
+  data: IPostData[];
   loading: boolean;
-}>({ contextData: [], loading: false });
+}>({ data: [], loading: false });
 
 export function PostContextProvider({
   children,

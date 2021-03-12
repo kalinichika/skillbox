@@ -17,10 +17,12 @@ export type PostState = {
   data: IPostData[];
   loading: boolean;
   error: null | Error | Object | String;
+  after: string;
 };
 
 export const initialState: PostState = {
   data: [],
   loading: false,
   error: null,
+  after: '',
 };

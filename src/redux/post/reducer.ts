@@ -4,17 +4,20 @@ import {
   GET_POST_DATA,
   GET_POST_DATA_SUCCESS,
   GET_POST_DATA_ERROR,
+  SET_AFTER,
 } from './const';
 import {
   PostRequestAction,
   PostRequestActionError,
   PostRequestActionSuccess,
+  SetAfterAction,
 } from './actions';
 
 type PostActions =
   | PostRequestAction
   | PostRequestActionError
-  | PostRequestActionSuccess;
+  | PostRequestActionSuccess
+  | SetAfterAction;
 
 export const postReducer: Reducer<PostState, PostActions> = (
   state = initialState,
@@ -35,10 +38,17 @@ export const postReducer: Reducer<PostState, PostActions> = (
       };
     case GET_POST_DATA:
       return {
+        ...state,
         data: initialState.data,
         error: null,
         loading: true,
       };
+    case SET_AFTER: {
+      return {
+        ...state,
+        after: action.data,
+      };
+    }
     default:
       return state;
   }
