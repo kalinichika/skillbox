@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CommonState } from '../../redux/common/initialState';
 import { updateComment } from '../../redux/common/actions';
@@ -27,9 +27,8 @@ export function CommentForm({ type }: ICommentForm) {
     onChange(event.target.value);
   }
 
-  function handleSubmit(event: FormEvent) {
+  function handleSubmit() {
     console.log('Submit: ', value);
-    event.preventDefault();
   }
 
   useEffect(() => {
