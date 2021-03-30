@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TypeState } from '../../redux/typeState';
-import { updateComment } from '../../redux/action';
+import { CommonState } from '../../redux/common/initialState';
+import { updateComment } from '../../redux/common/actions';
 import { CommentFormControlled } from './CommentFormControlled';
 
 interface ICommentForm {
@@ -10,12 +10,17 @@ interface ICommentForm {
 
 export function CommentForm({ type }: ICommentForm) {
   const dispatch = useDispatch();
+
   const [value, onChange] =
     type === 'reply'
       ? useState('')
       : [
-          useSelector<TypeState, string>((state) => state.commentText),
-          (val: string) => dispatch(updateComment(val)),
+          useSelector<{ common: CommonState }, string>(
+            (state) => state.common.commentText
+          ),
+          (val: string) => {
+            dispatch(updateComment(val));
+          },
         ];
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
@@ -23,8 +28,8 @@ export function CommentForm({ type }: ICommentForm) {
   }
 
   function handleSubmit(event: FormEvent) {
+    console.log('Submit: ', value);
     event.preventDefault();
-    console.log(value);
   }
 
   useEffect(() => {

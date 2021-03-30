@@ -18,7 +18,7 @@ export function Post({ title, text, onClose }: IPropsPost) {
   useEffect(() => {
     function handleClick(event: MouseEvent) {
       if (event.target instanceof Node && !ref.current?.contains(event.target))
-        onClose();
+      onClose();
     }
     document.addEventListener('click', handleClick);
 

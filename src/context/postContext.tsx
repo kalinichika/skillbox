@@ -15,13 +15,19 @@ interface IPostContextData {
     avatar: string;
   };
 }
-export const postContext = createContext<IPostContextData[]>([]);
+export const postContext = createContext<{
+  contextData: IPostContextData[];
+  loading: boolean;
+}>({ contextData: [], loading: false });
 
 export function PostContextProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [data] = usePostData();
-  return <postContext.Provider value={data}>{children}</postContext.Provider>;
+  return (
+    <postContext.Provider value={usePostData()}>
+      {children}
+    </postContext.Provider>
+  );
 }

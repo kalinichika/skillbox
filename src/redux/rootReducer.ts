@@ -1,20 +1,10 @@
-import { Reducer } from 'redux';
-import { initialState } from './initialState';
-import { TypeState } from './typeState';
-import { UPDATE_COMMENT, GET_TOKEN } from './const';
+import { combineReducers } from 'redux';
+import { userReducer } from './user/reducer';
+import { commonReducer } from './common/reducer';
+import { postReducer } from './post/reducer';
 
-export const rootReducer: Reducer<TypeState> = (
-  state = initialState,
-  action
-) => {
-  switch (action.type) {
-    case UPDATE_COMMENT:
-    case GET_TOKEN:
-      return {
-        ...state,
-        [action.field]: action.payload.data,
-      };
-    default:
-      return state;
-  }
-};
+export const rootReducer = combineReducers({
+  user: userReducer,
+  common: commonReducer,
+  post: postReducer,
+});

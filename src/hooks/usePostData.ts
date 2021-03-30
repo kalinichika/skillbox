@@ -1,6 +1,8 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPostData } from '../redux/post/actions';
 
+import { PostState } from '../redux/post/initialState';
 interface IPostData {
   id: string;
   url: string;
@@ -16,68 +18,19 @@ interface IPostData {
   };
 }
 
-interface IPostContextData {
-  data: {
-    id: string;
-    url: string;
-    author: string;
-    title: string;
-    num_comments: number;
-    ups: number;
-    sr_detail: {
-      icon_img: string;
-      header_img: string;
-      created_utc: number;
-    };
-  };
-}
-
 export function usePostData() {
-  const [data, setData] = useState<IPostData[]>([]);
+  const data = useSelector<{ post: PostState }, IPostData[]>(
+    (state) => state.post.data
+  );
+  const loading = useSelector<{ post: PostState }, boolean>(
+    (state) => state.post.loading
+  );
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get('https://www.reddit.com/r/popular/best.json?sr_detail=true', {
-        headers: {
-          'Content-type': `application/json`,
-        },
-      })
-      .then((resp) => {
-        const formattedPostData = resp.data.data.children.map(
-          ({ data }: IPostContextData) => {
-            const {
-              id = '',
-              url = '',
-              title = '',
-              author = '',
-              ups = 0,
-              num_comments = 0,
-              sr_detail = {
-                icon_img: '',
-                header_img: '',
-                created_utc: 0,
-              },
-            } = data || {};
-            return {
-              id: id,
-              url: url,
-              title: title,
-              time: new Date(new Date().getTime() - sr_detail.created_utc),
-              preview: sr_detail.header_img,
-              karmaValue: ups,
-              commentValue: num_comments,
-              author: {
-                name: author,
-                href: '#user-url',
-                avatar: sr_detail.icon_img,
-              },
-            };
-          }
-        );
-        setData(formattedPostData);
-      })
-      .catch(console.log);
+    dispatch(getPostData());
   }, []);
 
-  return [data];
+  return { contextData: data, loading };
 }

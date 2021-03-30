@@ -10,7 +10,6 @@ export function CommentFormUncontrolled({ type }: ICommentForm) {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    console.log(ref.current?.value);
   }
 
   useEffect(() => {
