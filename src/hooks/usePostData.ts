@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CommonState } from '../redux/common/initialState';
-import { getPostData } from '../redux/post/actions';
+import { getPostData, setLoadMore } from '../redux/post/actions';
 
 import { PostState } from '../redux/post/initialState';
 interface IPostData {
@@ -36,11 +36,30 @@ export function usePostData() {
   const token = useSelector<{ common: CommonState }, string | undefined>(
     (state) => state.common.token
   );
+  const loadMore = useSelector<{ post: PostState }, number | false | undefined>(
+    (state) => state.post.loadMore
+  );
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!token || token === 'undefined' || token === '') return;
+    console.log('useEffect[token] -- usePostData');
     dispatch(getPostData({ token: token, after: after }));
   }, [token]);
+
+  useEffect(() => {
+    if (
+      loading ||
+      data.length === 0 ||
+      !token ||
+      token === 'undefined' ||
+      token === '' ||
+      !loadMore
+    )
+      return;
+    console.log('useEffect[loadMore] -- usePostData');
+    dispatch(getPostData({ token: token, after: after }));
+  }, [loadMore]);
 
   return { data, loading, error };
 }

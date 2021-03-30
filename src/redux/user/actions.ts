@@ -72,6 +72,7 @@ export const userDataRequestAsync = (
       );
     })
     .catch((error) => {
+      console.log('ERROR IN userDataRequestAsync');
       console.log(error);
       dispatch(userDataRequestError(error));
     });

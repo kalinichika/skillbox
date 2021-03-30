@@ -6,6 +6,9 @@ import { GenericList } from '../GenericList';
 import classNames from 'classnames';
 import styles from './cardslist.css';
 import { usePostData } from '../../hooks/usePostData';
+import { getPostData, setLoadMore } from '../../redux/post/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { PostState } from '../../redux/post/initialState';
 
 export function CardsList() {
   interface IPostData {
@@ -40,6 +43,7 @@ export function CardsList() {
 
   const postData = usePostData();
   const [state, setState] = useState<TState>(postData);
+  const [stateLoadMore, setStateLoadMore] = useState<number | false>(false);
 
   const [openedMenuId, setOpenedMenuId] = React.useState('');
   const [bookmarks, setBookmarks] = React.useState<TBookmarks>([]);
@@ -79,27 +83,57 @@ export function CardsList() {
     });
     return listData;
   };
+  const loadMore = useSelector<{ post: PostState }, number | false>(
+    (state) => state.post.loadMore
+  );
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setStateLoadMore(loadMore);
+  }, [loadMore]);
 
   useEffect(() => {
-    console.log('useEffect[state]', state.data, postData.data);
-    // setState(postData);
-    state.data.forEach(
-      ({ id, karmaValue }: { id: string; karmaValue: number }) =>
-        setKarmaValue(id, karmaValue)
-    );
+    console.log('useEffect[postData]', state.data.length, postData.data.length);
+    if (postData.data.length !== state.data.length) {
+      setState(postData);
+      state.data.forEach(
+        ({ id, karmaValue }: { id: string; karmaValue: number }) =>
+          setKarmaValue(id, karmaValue)
+      );
+    }
+    if (postData.loading !== state.loading) {
+      setState((state) => ({
+        ...state,
+        loading: postData.loading,
+      }));
+    }
+    if (postData.error !== state.error) {
+      setState((state) => ({
+        ...state,
+        error: postData.error,
+      }));
+    }
   }, [postData]);
 
   useEffect(() => {
-    console.log('useEffect[bottomOfList.current]');
+    console.log('useEffect[bottomOfList]', bottomOfList.current);
     const observer = new IntersectionObserver(
       () => {
-        console.log('load more');
+        if (
+          state.data.length !== '0' &&
+          stateLoadMore !== undefined &&
+          stateLoadMore < 3
+        ) {
+          console.log('load more, state loading', !state.loading);
+          if (!state.loading) dispatch(setLoadMore(true));
+        }
       },
       { rootMargin: '10px' }
     );
 
-    if (bottomOfList.current) observer.observe(bottomOfList.current);
-
+    if (bottomOfList.current) {
+      observer.observe(bottomOfList.current);
+    }
     return () => {
       if (bottomOfList.current) {
         observer.unobserve(bottomOfList.current);
@@ -127,10 +161,10 @@ export function CardsList() {
       )}
 
       <ul className={styles.cardsList}>
-        {state.data.map((dataCard: IPostData) => (
+        {state.data.map((dataCard: IPostData, index: number) => (
           <Card
             {...dataCard}
-            key={dataCard.id}
+            key={dataCard.id + index}
             hiddenCard={hiddenCard}
             changeBookmark={changeBookmark}
             inBookmarks={bookmarks.includes(dataCard.id)}
@@ -144,11 +178,26 @@ export function CardsList() {
         ))}
       </ul>
 
-      <div ref={bottomOfList} />
+      {loadMore < 3 && <div ref={bottomOfList} />}
 
-      {state.loading && <div className={styles.info}>Загрузка...</div>}
-      {state.error && <div className={styles.error}>Ошибка</div>}
-      {state.data.length === 0 && <div className={styles.info}>Нет данных</div>}
+      {(state.loading && <div className={styles.info}>Загрузка...</div>) ||
+        (state.error && <div className={styles.error}>Ошибка</div>) ||
+        (state.data.length === 0 && (
+          <div className={styles.info}>Нет данных</div>
+        ))}
+      {state.data.length !== 0 &&
+        !state.loading &&
+        stateLoadMore !== undefined &&
+        stateLoadMore > 2 && (
+          <button
+            className={styles.loadMore}
+            onClick={() => {
+              dispatch(setLoadMore(true));
+            }}
+          >
+            Load More...
+          </button>
+        )}
     </>
   );
 }

@@ -6,6 +6,7 @@ import {
   GET_POST_DATA_SUCCESS,
   GET_POST_DATA_ERROR,
   SET_AFTER,
+  SET_LOAD_MORE,
 } from './const';
 import { CommonState } from '../common/initialState';
 import { UserState } from '../user/initialState';
@@ -85,6 +86,17 @@ export const setAfter = (after: string) => {
   };
 };
 
+export type SetLoadMoreAction = {
+  type: typeof SET_LOAD_MORE;
+  data: number | false;
+};
+export const setLoadMore = (loadMore: number | boolean) => {
+  return {
+    type: SET_LOAD_MORE,
+    data: loadMore,
+  };
+};
+
 export const getPostData = ({
   token,
   after,
@@ -98,7 +110,6 @@ export const getPostData = ({
   Action<string>
 > => (dispatch) => {
   dispatch(postRequest());
-
   axios
     .get('https://oauth.reddit.com/rising', {
       headers: {
@@ -116,7 +127,6 @@ export const getPostData = ({
           data: { after, children },
         },
       }) => {
-        console.log('get post data!!!!!!');
         const formattedPostData = children.map(({ data }: IPostContextData) => {
           const {
             id = '',
@@ -128,8 +138,6 @@ export const getPostData = ({
             created_utc = 0,
             thumbnail = '',
           } = data || {};
-
-          dispatch(setAfter(after));
 
           return {
             id,
@@ -146,10 +154,12 @@ export const getPostData = ({
             },
           };
         });
+        dispatch(setAfter(formattedPostData[9].after));
         dispatch(postRequestSuccess(formattedPostData));
       }
     )
     .catch((error) => {
+      console.log('Ошибка загрузки данных posts');
       console.log(error);
       dispatch(postRequestError(error));
     });

@@ -18,6 +18,7 @@ export type PostState = {
   loading: boolean;
   error: null | Error | Object | String;
   after: string;
+  loadMore: number | false;
 };
 
 export const initialState: PostState = {
@@ -25,4 +26,5 @@ export const initialState: PostState = {
   loading: false,
   error: null,
   after: '',
+  loadMore: false,
 };
