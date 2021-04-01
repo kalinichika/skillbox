@@ -5,25 +5,28 @@ import { CommentForm } from '../CommentForm';
 import { Icon } from '../Icon';
 import { Text } from '../Text';
 import styles from './post.css';
+import { useHistory } from 'react-router';
 
 interface IPropsPost {
   title: string;
   text: string;
-  onClose: () => void;
 }
 
-export function Post({ title, text, onClose }: IPropsPost) {
+export function Post({ title, text }: IPropsPost) {
   const ref = useRef<HTMLDivElement>(null);
+  const history = useHistory();
 
   useEffect(() => {
     function handleClick(event: MouseEvent) {
       if (event.target instanceof Node && !ref.current?.contains(event.target))
-        onClose();
+        history.push('/');
     }
+
     document.addEventListener('click', handleClick);
 
     return () => document.removeEventListener('click', handleClick);
   }, []);
+
   const node = document.querySelector('#modal-root');
   if (!node) return null;
 
@@ -37,7 +40,9 @@ export function Post({ title, text, onClose }: IPropsPost) {
         icon="close"
         className={styles.close}
         size={16}
-        onClick={onClose}
+        onClick={() => {
+          history.push('/');
+        }}
       />
       <Text size={14}>{text}</Text>
       <CommentForm />

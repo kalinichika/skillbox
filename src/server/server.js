@@ -29,7 +29,7 @@ app.get('/auth', (req, res) => {
     .catch((e) => console.log("ERROR IN app.get('/auth')", e));
 });
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.send(indexTemplate(ReactDOM.renderToString(App())));
 });
 

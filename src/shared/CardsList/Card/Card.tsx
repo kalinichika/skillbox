@@ -55,7 +55,13 @@ export function Card({
         />
       )}
 
-      <TextContent author={author} title={title} time={time} url={url} />
+      <TextContent
+        author={author}
+        title={title}
+        time={time}
+        url={url}
+        id={id}
+      />
 
       <Preview preview={preview} />
 

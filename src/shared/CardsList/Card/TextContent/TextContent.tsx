@@ -7,6 +7,7 @@ interface ITextContent {
   url: string;
   time: Date;
   title: string;
+  id: string;
   author: {
     name: string;
     avatar: string;
@@ -19,6 +20,7 @@ export function TextContent({
   time = new Date(),
   title,
   url,
+  id,
 }: ITextContent) {
   const { name, avatar, href } = author;
   return (
@@ -40,7 +42,7 @@ export function TextContent({
           </span>
         </span>
       </div>
-      <Title title={title} url={url} />
+      <Title title={title} url={url} id={id} />
     </div>
   );
 }
