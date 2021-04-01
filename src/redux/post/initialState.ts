@@ -1,4 +1,6 @@
-interface IPostData {
+import { now } from 'moment';
+
+export interface IPostData {
   id: string;
   url: string;
   title: string;
@@ -19,6 +21,22 @@ export type PostState = {
   error: null | Error | Object | String;
   after: string;
   loadMore: number | false;
+  opened: IPostData;
+};
+
+const defaultData = {
+  id: '',
+  url: '',
+  title: '',
+  time: new Date(),
+  preview: '',
+  karmaValue: 0,
+  commentsValue: 0,
+  author: {
+    name: '',
+    href: '',
+    avatar: '',
+  },
 };
 
 export const initialState: PostState = {
@@ -27,4 +45,5 @@ export const initialState: PostState = {
   error: null,
   after: '',
   loadMore: false,
+  opened: defaultData,
 };

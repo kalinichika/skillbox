@@ -7,6 +7,7 @@ import {
   GET_POST_DATA_ERROR,
   SET_AFTER,
   SET_LOAD_MORE,
+  SET_OPENED_POST_DATA,
 } from './const';
 import { CommonState } from '../common/initialState';
 import { UserState } from '../user/initialState';
@@ -163,4 +164,16 @@ export const getPostData = ({
       console.log(error);
       dispatch(postRequestError(error));
     });
+};
+
+export type SetOpenedPostDataAction = {
+  type: typeof SET_OPENED_POST_DATA;
+  data: IPostData;
+};
+
+export const setOpenedPostData = (data: IPostData) => {
+  return {
+    type: SET_OPENED_POST_DATA,
+    data,
+  };
 };

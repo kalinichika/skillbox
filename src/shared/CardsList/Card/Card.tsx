@@ -26,6 +26,7 @@ interface ICard {
   inBookmarks: boolean;
   openedMenuId: string;
   setOpenedMenuId: (id: string) => void;
+  setOpenedPostData: (openedPostId: string) => void;
 }
 
 export function Card({
@@ -43,6 +44,7 @@ export function Card({
   inBookmarks,
   openedMenuId,
   setOpenedMenuId,
+  setOpenedPostData,
 }: ICard) {
   return (
     <li className={styles.card} key={id}>
@@ -61,6 +63,7 @@ export function Card({
         time={time}
         url={url}
         id={id}
+        setOpenedPostData={setOpenedPostData}
       />
 
       <Preview preview={preview} />

@@ -6,6 +6,7 @@ import {
   GET_POST_DATA_ERROR,
   SET_AFTER,
   SET_LOAD_MORE,
+  SET_OPENED_POST_DATA,
 } from './const';
 import {
   PostRequestAction,
@@ -13,6 +14,7 @@ import {
   PostRequestActionSuccess,
   SetAfterAction,
   SetLoadMoreAction,
+  SetOpenedPostDataAction,
 } from './actions';
 
 type PostActions =
@@ -20,7 +22,8 @@ type PostActions =
   | PostRequestActionError
   | PostRequestActionSuccess
   | SetAfterAction
-  | SetLoadMoreAction;
+  | SetLoadMoreAction
+  | SetOpenedPostDataAction;
 
 export const postReducer: Reducer<PostState, PostActions> = (
   state = initialState,
@@ -59,6 +62,12 @@ export const postReducer: Reducer<PostState, PostActions> = (
             ? state.loadMore + 1
             : 1
           : action.data,
+      };
+    }
+    case SET_OPENED_POST_DATA: {
+      return {
+        ...state,
+        opened: action.data,
       };
     }
     default:
