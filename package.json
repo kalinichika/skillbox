@@ -1,6 +1,9 @@
 {
   "name": "skillbox",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "webpack.config.js",
   "dependencies": {
     "@types/jest": "^26.0.15",
@@ -10,6 +13,7 @@
     "axios": "^0.21.0",
     "classnames": "^2.2.6",
     "express": "^4.17.1",
+    "formik": "^2.2.6",
     "moment": "^2.29.1",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.2",
@@ -19,9 +23,7 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "ts-jest": "^26.4.4"
-  },
-  "devDependencies": {
+    "ts-jest": "^26.4.4",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
     "@babel/preset-typescript": "^7.12.1",
@@ -64,9 +66,10 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development CLIENT_ID=JgKiK8iIy9px3g node ./bin/dev",
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
-    "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "test": "jest",
-    "eslint": "eslint"
+    "eslint": "eslint",
+    "start": "node ./dist/server/server.js"
   },
   "repository": {
     "type": "git",
