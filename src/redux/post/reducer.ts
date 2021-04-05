@@ -4,17 +4,23 @@ import {
   GET_POST_DATA,
   GET_POST_DATA_SUCCESS,
   GET_POST_DATA_ERROR,
+  SET_AFTER,
+  SET_LOAD_MORE,
 } from './const';
 import {
   PostRequestAction,
   PostRequestActionError,
   PostRequestActionSuccess,
+  SetAfterAction,
+  SetLoadMoreAction,
 } from './actions';
 
 type PostActions =
   | PostRequestAction
   | PostRequestActionError
-  | PostRequestActionSuccess;
+  | PostRequestActionSuccess
+  | SetAfterAction
+  | SetLoadMoreAction;
 
 export const postReducer: Reducer<PostState, PostActions> = (
   state = initialState,
@@ -35,10 +41,26 @@ export const postReducer: Reducer<PostState, PostActions> = (
       };
     case GET_POST_DATA:
       return {
-        data: initialState.data,
+        ...state,
         error: null,
         loading: true,
       };
+    case SET_AFTER: {
+      return {
+        ...state,
+        after: action.data,
+      };
+    }
+    case SET_LOAD_MORE: {
+      return {
+        ...state,
+        loadMore: action.data
+          ? state.loadMore
+            ? state.loadMore + 1
+            : 1
+          : action.data,
+      };
+    }
     default:
       return state;
   }

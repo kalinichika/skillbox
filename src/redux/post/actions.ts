@@ -5,6 +5,8 @@ import {
   GET_POST_DATA,
   GET_POST_DATA_SUCCESS,
   GET_POST_DATA_ERROR,
+  SET_AFTER,
+  SET_LOAD_MORE,
 } from './const';
 import { CommonState } from '../common/initialState';
 import { UserState } from '../user/initialState';
@@ -32,11 +34,9 @@ interface IPostContextData {
     title: string;
     num_comments: number;
     ups: number;
-    sr_detail: {
-      icon_img: string;
-      header_img: string;
-      created_utc: number;
-    };
+    author_flair_text: string;
+    created_utc: number;
+    thumbnail: string;
   };
 }
 
@@ -75,23 +75,59 @@ export const postRequestError: ActionCreator<PostRequestActionError> = (
   };
 };
 
-export const getPostData = (): ThunkAction<
+export type SetAfterAction = {
+  type: typeof SET_AFTER;
+  data: string;
+};
+export const setAfter = (after: string) => {
+  return {
+    type: SET_AFTER,
+    data: after,
+  };
+};
+
+export type SetLoadMoreAction = {
+  type: typeof SET_LOAD_MORE;
+  data: number | false;
+};
+export const setLoadMore = (loadMore: number | boolean) => {
+  return {
+    type: SET_LOAD_MORE,
+    data: loadMore,
+  };
+};
+
+export const getPostData = ({
+  token,
+  after,
+}: {
+  token: string;
+  after: string;
+}): ThunkAction<
   void,
   { common: CommonState; user: UserState },
   unknown,
   Action<string>
 > => (dispatch) => {
   dispatch(postRequest());
-
   axios
-    .get('https://www.reddit.com/r/popular/best.json?sr_detail=true', {
+    .get('https://oauth.reddit.com/rising', {
       headers: {
         'Content-type': `application/json`,
+        Authorization: `bearer ${token}`,
+      },
+      params: {
+        limit: 10,
+        after,
       },
     })
-    .then((resp) => {
-      const formattedPostData = resp.data.data.children.map(
-        ({ data }: IPostContextData) => {
+    .then(
+      ({
+        data: {
+          data: { after, children },
+        },
+      }) => {
+        const formattedPostData = children.map(({ data }: IPostContextData) => {
           const {
             id = '',
             url = '',
@@ -99,31 +135,31 @@ export const getPostData = (): ThunkAction<
             author = '',
             ups = 0,
             num_comments = 0,
-            sr_detail = {
-              icon_img: '',
-              header_img: '',
-              created_utc: 0,
-            },
+            created_utc = 0,
+            thumbnail = '',
           } = data || {};
+
           return {
-            id: id,
-            url: url,
-            title: title,
-            time: new Date(new Date().getTime() - sr_detail.created_utc),
-            preview: sr_detail.header_img,
+            id,
+            url,
+            title,
+            time: new Date(new Date().getTime() - created_utc),
+            preview: url,
             karmaValue: ups,
             commentValue: num_comments,
             author: {
               name: author,
               href: '#user-url',
-              avatar: sr_detail.icon_img,
+              avatar: thumbnail,
             },
           };
-        }
-      );
-      dispatch(postRequestSuccess(formattedPostData));
-    })
+        });
+        dispatch(setAfter(formattedPostData[9].after));
+        dispatch(postRequestSuccess(formattedPostData));
+      }
+    )
     .catch((error) => {
+      console.log('Ошибка загрузки данных posts');
       console.log(error);
       dispatch(postRequestError(error));
     });
