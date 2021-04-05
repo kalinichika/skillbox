@@ -6,7 +6,11 @@ import { GenericList } from '../GenericList';
 import classNames from 'classnames';
 import styles from './cardslist.css';
 import { usePostData } from '../../hooks/usePostData';
-import { getPostData, setLoadMore } from '../../redux/post/actions';
+import {
+  getPostData,
+  setLoadMore,
+  setOpenedPostData,
+} from '../../redux/post/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { PostState } from '../../redux/post/initialState';
 
@@ -51,6 +55,18 @@ export function CardsList() {
   const classesBookmarksList = classNames(styles.bookmarksList);
   const bottomOfList = useRef<HTMLDivElement>(null);
 
+  const dispatch = useDispatch();
+
+  const setOpenedPostDataFunc = (openedPostId: string) => {
+    dispatch(
+      setOpenedPostData(
+        state.data.find(({ id }: { id: string }) => {
+          return openedPostId === id;
+        })
+      )
+    );
+  };
+
   const setKarmaValue = (id: string, value: number) => {
     setKarmaValues((prevState) => ({ ...prevState, [id]: value }));
   };
@@ -87,13 +103,11 @@ export function CardsList() {
     (state) => state.post.loadMore
   );
 
-  const dispatch = useDispatch();
   useEffect(() => {
     setStateLoadMore(loadMore);
   }, [loadMore]);
 
   useEffect(() => {
-    console.log('useEffect[postData]', state.data.length, postData.data.length);
     if (postData.data.length !== state.data.length) {
       setState(postData);
       state.data.forEach(
@@ -116,7 +130,6 @@ export function CardsList() {
   }, [postData]);
 
   useEffect(() => {
-    console.log('useEffect[bottomOfList]', bottomOfList.current);
     const observer = new IntersectionObserver(
       () => {
         if (
@@ -124,7 +137,6 @@ export function CardsList() {
           stateLoadMore !== undefined &&
           stateLoadMore < 3
         ) {
-          console.log('load more, state loading', !state.loading);
           if (!state.loading) dispatch(setLoadMore(true));
         }
       },
@@ -174,6 +186,7 @@ export function CardsList() {
             }
             openedMenuId={openedMenuId}
             setOpenedMenuId={setOpenedMenuId}
+            setOpenedPostData={setOpenedPostDataFunc}
           />
         ))}
       </ul>

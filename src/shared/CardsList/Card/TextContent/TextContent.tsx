@@ -7,6 +7,8 @@ interface ITextContent {
   url: string;
   time: Date;
   title: string;
+  id: string;
+  setOpenedPostData: (openedPostId: string) => void;
   author: {
     name: string;
     avatar: string;
@@ -19,6 +21,8 @@ export function TextContent({
   time = new Date(),
   title,
   url,
+  id,
+  setOpenedPostData,
 }: ITextContent) {
   const { name, avatar, href } = author;
   return (
@@ -40,7 +44,12 @@ export function TextContent({
           </span>
         </span>
       </div>
-      <Title title={title} url={url} />
+      <Title
+        title={title}
+        url={url}
+        id={id}
+        setOpenedPostData={setOpenedPostData}
+      />
     </div>
   );
 }

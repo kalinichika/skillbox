@@ -43,7 +43,6 @@ export function usePostData() {
 
   useEffect(() => {
     if (!token || token === 'undefined' || token === '') return;
-    console.log('useEffect[token] -- usePostData');
     dispatch(getPostData({ token: token, after: after }));
   }, [token]);
 
@@ -57,7 +56,6 @@ export function usePostData() {
       !loadMore
     )
       return;
-    console.log('useEffect[loadMore] -- usePostData');
     dispatch(getPostData({ token: token, after: after }));
   }, [loadMore]);
 
