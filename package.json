@@ -67,12 +67,12 @@
     "webpack-node-externals": "^2.5.2"
   },
   "scripts": {
-    "dev": "cross-env NODE_ENV=development CLIENT_ID=JgKiK8iIy9px3g SECRET=AZM8u-wJSj256QrLk44inAdn65KXjQ node ./bin/dev.js",
+    "dev": "cross-env NODE_ENV=development CLIENT_ID=JgKiK8iIy9px3g SECRET=AZM8u-wJSj256QrLk44inAdn65KXjQ PATH_TO_HOME_URL=http://localhost:3000 node ./bin/dev.js",
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "test": "jest",
     "eslint": "eslint",
-    "start": "node CLIENT_ID=va6fFmbjrsJ1Pw SECRET=Ipn4YE6ZvOJ35ij0P06icBRoDY8VqQ ./dist/server/server.js"
+    "start": "cross-env NODE_ENV=production CLIENT_ID=va6fFmbjrsJ1Pw SECRET=Ipn4YE6ZvOJ35ij0P06icBRoDY8VqQ PATH_TO_HOME_URL=https://react-reddit-application.herokuapp.com node ./dist/server/server.js"
   },
   "repository": {
     "type": "git",

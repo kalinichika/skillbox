@@ -14,7 +14,7 @@ app.get('/auth', (req, res) => {
   axios
     .post(
       'https://www.reddit.com/api/v1/access_token',
-      `grant_type=authorization_code&code=${req.query.code}&redirect_uri=https://react-reddit-application.herokuapp.com/auth`,
+      `grant_type=authorization_code&code=${req.query.code}&redirect_uri=${process.env.PATH_TO_HOME_URL}/auth`,
       {
         auth: {
           username: process.env.CLIENT_ID,
