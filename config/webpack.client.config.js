@@ -37,7 +37,7 @@ module.exports = {
   },
   entry: [
     path.resolve(__dirname, '../src/client/index.jsx'),
-    'webpack-hot-middleware/client?path=http://localhost:3001/static/__webpack_hmr',
+    `webpack-hot-middleware/client?path=http://localhost:3001/static/__webpack_hmr`,
   ],
   module: {
     rules: [
