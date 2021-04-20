@@ -29,6 +29,16 @@ function setupDevtool() {
   if (IS_PROD) return false;
 }
 
+function getEntry() {
+  if (IS_PROD) {
+    return [
+      path.resolve(__dirname, '../src/client/index.jsx'),
+      `webpack-hot-middleware/client?path=http://localhost:3001/static/__webpack_hmr`,
+    ];
+  }
+  return [path.resolve(__dirname, '../src/client/index.jsx')];
+}
+
 module.exports = {
   mode: NODE_ENV ? NODE_ENV : 'development',
   output: {
@@ -42,10 +52,7 @@ module.exports = {
       'react-dom': IS_DEV ? '@hot-loader/react-dom' : 'react-dom',
     },
   },
-  entry: [
-    path.resolve(__dirname, '../src/client/index.jsx'),
-    `webpack-hot-middleware/client?path=http://localhost:3001/static/__webpack_hmr`,
-  ],
+  entry: getEntry(),
   module: {
     rules: [
       {

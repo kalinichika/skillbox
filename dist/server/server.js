@@ -334,7 +334,7 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nex
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar express_1 = __importDefault(__webpack_require__(/*! express */ \"express\"));\r\nvar server_1 = __importDefault(__webpack_require__(/*! react-dom/server */ \"react-dom/server\"));\r\nvar App_1 = __webpack_require__(/*! ../App */ \"./src/App.tsx\");\r\nvar axios_1 = __importDefault(__webpack_require__(/*! axios */ \"axios\"));\r\nvar indexTemplate_1 = __webpack_require__(/*! ./indexTemplate */ \"./src/server/indexTemplate.js\");\r\nvar PORT = process.env.PORT || 3000;\r\nvar app = express_1.default();\r\napp.use('/static', express_1.default.static('./dist/client'));\r\napp.get('/auth', function (req, res) {\r\n    axios_1.default\r\n        .post('https://www.reddit.com/api/v1/access_token', \"grant_type=authorization_code&code=\" + req.query.code + \"&redirect_uri=\" + \"http://localhost:3000\" + \"/auth\", {\r\n        auth: {\r\n            username: \"JgKiK8iIy9px3g\",\r\n            password: \"AZM8u-wJSj256QrLk44inAdn65KXjQ\",\r\n        },\r\n        headers: { 'Content-type': 'application/x-www-form-urlencoded' },\r\n    })\r\n        .then(function (_a) {\r\n        var data = _a.data;\r\n        res.send(indexTemplate_1.indexTemplate(server_1.default.renderToString(App_1.App()), data['access_token']));\r\n    })\r\n        .catch(function (e) { return console.log(\"ERROR IN app.get('/auth')\", e); });\r\n});\r\napp.get('*', function (req, res) {\r\n    res.send(indexTemplate_1.indexTemplate(server_1.default.renderToString(App_1.App())));\r\n});\r\napp.listen(PORT, function () {\r\n    console.log('Server started on http://localhost:' + PORT);\r\n});\r\n\n\n//# sourceURL=webpack:///./src/server/server.js?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nvar express_1 = __importDefault(__webpack_require__(/*! express */ \"express\"));\r\nvar server_1 = __importDefault(__webpack_require__(/*! react-dom/server */ \"react-dom/server\"));\r\nvar App_1 = __webpack_require__(/*! ../App */ \"./src/App.tsx\");\r\nvar axios_1 = __importDefault(__webpack_require__(/*! axios */ \"axios\"));\r\nvar indexTemplate_1 = __webpack_require__(/*! ./indexTemplate */ \"./src/server/indexTemplate.js\");\r\nvar compression_1 = __importDefault(__webpack_require__(/*! compression */ \"compression\"));\r\nvar helmet_1 = __importDefault(__webpack_require__(/*! helmet */ \"helmet\"));\r\nvar PORT = process.env.PORT || 3000;\r\nvar IS_PROD = \"development\" === 'production';\r\nvar app = express_1.default();\r\napp.use('/static', express_1.default.static('./dist/client'));\r\nif (IS_PROD) {\r\n    app.use(compression_1.default());\r\n    app.use(helmet_1.default({\r\n        contentSecurityPolicy: false,\r\n    }));\r\n}\r\napp.get('/auth', function (req, res) {\r\n    axios_1.default\r\n        .post('https://www.reddit.com/api/v1/access_token', \"grant_type=authorization_code&code=\" + req.query.code + \"&redirect_uri=\" + \"http://localhost:3000\" + \"/auth\", {\r\n        auth: {\r\n            username: \"JgKiK8iIy9px3g\",\r\n            password: \"AZM8u-wJSj256QrLk44inAdn65KXjQ\",\r\n        },\r\n        headers: { 'Content-type': 'application/x-www-form-urlencoded' },\r\n    })\r\n        .then(function (_a) {\r\n        var data = _a.data;\r\n        res.send(indexTemplate_1.indexTemplate(server_1.default.renderToString(App_1.App()), data['access_token']));\r\n    })\r\n        .catch(function (e) { return console.log(\"ERROR IN app.get('/auth')\", e); });\r\n});\r\napp.get('*', function (req, res) {\r\n    res.send(indexTemplate_1.indexTemplate(server_1.default.renderToString(App_1.App())));\r\n});\r\napp.listen(PORT, function () {\r\n    console.log('Server started on http://localhost:' + PORT);\r\n});\r\n\n\n//# sourceURL=webpack:///./src/server/server.js?");
 
 /***/ }),
 
@@ -1224,6 +1224,17 @@ eval("module.exports = require(\"classnames\");\n\n//# sourceURL=webpack:///exte
 
 /***/ }),
 
+/***/ "compression":
+/*!******************************!*\
+  !*** external "compression" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"compression\");\n\n//# sourceURL=webpack:///external_%22compression%22?");
+
+/***/ }),
+
 /***/ "express":
 /*!**************************!*\
   !*** external "express" ***!
@@ -1243,6 +1254,17 @@ eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///externa
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"formik\");\n\n//# sourceURL=webpack:///external_%22formik%22?");
+
+/***/ }),
+
+/***/ "helmet":
+/*!*************************!*\
+  !*** external "helmet" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"helmet\");\n\n//# sourceURL=webpack:///external_%22helmet%22?");
 
 /***/ }),
 

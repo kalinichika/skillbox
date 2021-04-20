@@ -3,12 +3,23 @@ import ReactDOM from 'react-dom/server';
 import { App } from '../App';
 import axios from 'axios';
 import { indexTemplate } from './indexTemplate';
+import compression from 'compression';
+import helmet from 'helmet';
 
 const PORT = process.env.PORT || 3000;
+const IS_PROD = process.env.NODE_ENV === 'production';
 
 const app = express();
 
 app.use('/static', express.static('./dist/client'));
+if (IS_PROD) {
+  app.use(compression());
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+    })
+  );
+}
 
 app.get('/auth', (req, res) => {
   axios
