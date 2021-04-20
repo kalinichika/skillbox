@@ -15,10 +15,9 @@ const COMMON_PLUGINS = [
     'process.env.CLIENT_ID': `"${process.env.CLIENT_ID}"`,
     'process.env.SECRET': `"${process.env.SECRET}"`,
     'process.env.PATH_TO_HOME_URL': `"${process.env.PATH_TO_HOME_URL}"`,
-    'process.env.PATH_TO_HOME_URL_WITH_PORT':
-      NODE_ENV === 'development'
-        ? `"${process.env.PATH_TO_HOME_URL}:3000"`
-        : `"${process.env.PATH_TO_HOME_URL}"`,
+    'process.env.PATH_TO_HOME_URL_WITH_PORT': IS_PROD
+      ? `"${process.env.PATH_TO_HOME_URL}"`
+      : `"${process.env.PATH_TO_HOME_URL}:3000"`,
   }),
 ];
 
