@@ -4,40 +4,34 @@ import { CommonState } from '../../redux/common/initialState';
 import { updateComment } from '../../redux/common/actions';
 import { CommentFormControlled } from './CommentFormControlled';
 
+import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { valueTextState } from './state';
+
 interface ICommentForm {
   type?: string;
 }
 
 export function CommentForm({ type }: ICommentForm) {
-  const dispatch = useDispatch();
-
-  const [value, onChange] =
-    type === 'reply'
-      ? useState('')
-      : [
-          useSelector<{ common: CommonState }, string>(
-            (state) => state.common.commentText
-          ),
-          (val: string) => {
-            dispatch(updateComment(val));
-          },
-        ];
+  const [value, setTextValue] = useRecoilState(valueTextState);
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    onChange(event.target.value);
+    setTextValue((old) => {
+      console.log(old, event.target.value);
+      return event.target.value;
+    });
   }
 
   function handleSubmit() {
     console.log('Submit: ', value);
   }
 
-  useEffect(() => {
-    if (type === 'reply') onChange('Михаил Рогов, ');
-  }, []);
+  // useEffect(() => {
+  // if (type === 'reply') setTextValue('Михаил Рогов, ');
+  // }, []);
 
   return (
     <CommentFormControlled
-      value={value}
+      value={valuetext}
       buttonText={type === 'reply' ? 'Reply' : 'Comment'}
       onChange={handleChange}
       onSubmit={handleSubmit}
