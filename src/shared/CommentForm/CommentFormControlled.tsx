@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FormEvent, useEffect } from 'react';
-import { Formik, Field, Form, FormikHelpers } from 'formik';
+import React, { ChangeEvent, useEffect } from 'react';
+import { Formik, Field, Form } from 'formik';
 
 import styles from './commentForm.css';
 
