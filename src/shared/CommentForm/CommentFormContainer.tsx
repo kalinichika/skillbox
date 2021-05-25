@@ -1,35 +1,44 @@
 import React, { ChangeEvent, useEffect } from 'react';
 import { CommentFormControlled } from './CommentFormControlled';
-
-import { useRecoilState } from 'recoil';
-import { valueTextState } from './state';
+import { Provider, Subscribe, Container } from 'unstated-typescript';
 
 interface ICommentForm {
   type?: string;
 }
 
+type ValueState = {
+  value: string;
+};
+class UnstatedContainer extends Container<ValueState> {
+  state = {
+    value: 'Hello from Unstated!',
+  };
+  setValue(value: string) {
+    this.setState({ value });
+  }
+}
+
 export function CommentForm({ type }: ICommentForm) {
-  const [value, setTextValue] = useRecoilState(valueTextState);
-
-  function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    console.log(setTextValue);
-    setTextValue(event.target.value);
+  function handleChange(value: any, event: ChangeEvent<HTMLTextAreaElement>) {
+    value.setValue(event.target.value);
   }
 
-  function handleSubmit() {
-    console.log('Submit: ', value);
+  function handleSubmit(value: any) {
+    console.log('Submit: ', value.state.value);
   }
-
-  useEffect(() => {
-    if (type === 'reply') setTextValue('Михаил Рогов, ');
-  }, []);
 
   return (
-    <CommentFormControlled
-      value={value}
-      buttonText={type === 'reply' ? 'Reply' : 'Comment'}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
-    />
+    <Provider>
+      <Subscribe to={[UnstatedContainer]}>
+        {(value: any) => (
+          <CommentFormControlled
+            value={value.state.value}
+            buttonText={type === 'reply' ? 'Reply' : 'Comment'}
+            onChange={(event) => handleChange(value, event)}
+            onSubmit={() => handleSubmit(value)}
+          />
+        )}
+      </Subscribe>
+    </Provider>
   );
 }

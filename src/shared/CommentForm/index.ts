@@ -1,2 +1,3 @@
 import { CommentForm } from './CommentFormContainer';
-export { CommentForm };
+import { CommentFormEffector } from './CommentFormContainerEffector';
+export { CommentForm, CommentFormEffector };

@@ -106,7 +106,7 @@ eval("\r\n/*\r\n  MIT License http://www.opensource.org/licenses/mit-license.php
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.App = void 0;\r\nvar root_1 = __webpack_require__(/*! react-hot-loader/root */ \"react-hot-loader/root\");\r\nvar react_1 = __importDefault(__webpack_require__(/*! react */ \"react\"));\r\nvar react_redux_1 = __webpack_require__(/*! react-redux */ \"react-redux\");\r\nvar store_1 = __webpack_require__(/*! ./store */ \"./src/store.ts\");\r\nvar AppContent_1 = __webpack_require__(/*! ./AppContent */ \"./src/AppContent.tsx\");\r\nvar recoil_1 = __webpack_require__(/*! recoil */ \"recoil\");\r\n__webpack_require__(/*! ./main.global.css */ \"./src/main.global.css\");\r\nfunction AppComponent() {\r\n    return (react_1.default.createElement(recoil_1.RecoilRoot, null,\r\n        react_1.default.createElement(react_redux_1.Provider, { store: store_1.store },\r\n            react_1.default.createElement(AppContent_1.AppContent, null))));\r\n}\r\nexports.App = root_1.hot(function () { return AppComponent(); });\r\n\n\n//# sourceURL=webpack:///./src/App.tsx?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.App = void 0;\r\nvar root_1 = __webpack_require__(/*! react-hot-loader/root */ \"react-hot-loader/root\");\r\nvar react_1 = __importDefault(__webpack_require__(/*! react */ \"react\"));\r\nvar react_redux_1 = __webpack_require__(/*! react-redux */ \"react-redux\");\r\nvar store_1 = __webpack_require__(/*! ./store */ \"./src/store.ts\");\r\nvar AppContent_1 = __webpack_require__(/*! ./AppContent */ \"./src/AppContent.tsx\");\r\n__webpack_require__(/*! ./main.global.css */ \"./src/main.global.css\");\r\nfunction AppComponent() {\r\n    return (react_1.default.createElement(react_redux_1.Provider, { store: store_1.store },\r\n        react_1.default.createElement(AppContent_1.AppContent, null)));\r\n}\r\nexports.App = root_1.hot(function () { return AppComponent(); });\r\n\n\n//# sourceURL=webpack:///./src/App.tsx?");
 
 /***/ }),
 
@@ -634,7 +634,19 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nex
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\r\n}) : (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    o[k2] = m[k];\r\n}));\r\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\r\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\r\n}) : function(o, v) {\r\n    o[\"default\"] = v;\r\n});\r\nvar __importStar = (this && this.__importStar) || function (mod) {\r\n    if (mod && mod.__esModule) return mod;\r\n    var result = {};\r\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\r\n    __setModuleDefault(result, mod);\r\n    return result;\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.CommentForm = void 0;\r\nvar react_1 = __importStar(__webpack_require__(/*! react */ \"react\"));\r\nvar CommentFormControlled_1 = __webpack_require__(/*! ./CommentFormControlled */ \"./src/shared/CommentForm/CommentFormControlled.tsx\");\r\nvar recoil_1 = __webpack_require__(/*! recoil */ \"recoil\");\r\nvar state_1 = __webpack_require__(/*! ./state */ \"./src/shared/CommentForm/state.ts\");\r\nfunction CommentForm(_a) {\r\n    var type = _a.type;\r\n    var _b = recoil_1.useRecoilState(state_1.valueTextState), value = _b[0], setTextValue = _b[1];\r\n    function handleChange(event) {\r\n        console.log(setTextValue);\r\n        setTextValue(event.target.value);\r\n    }\r\n    function handleSubmit() {\r\n        console.log('Submit: ', value);\r\n    }\r\n    react_1.useEffect(function () {\r\n        if (type === 'reply')\r\n            setTextValue('Михаил Рогов, ');\r\n    }, []);\r\n    return (react_1.default.createElement(CommentFormControlled_1.CommentFormControlled, { value: value, buttonText: type === 'reply' ? 'Reply' : 'Comment', onChange: handleChange, onSubmit: handleSubmit }));\r\n}\r\nexports.CommentForm = CommentForm;\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/CommentFormContainer.tsx?");
+eval("\r\nvar __extends = (this && this.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        if (typeof b !== \"function\" && b !== null)\r\n            throw new TypeError(\"Class extends value \" + String(b) + \" is not a constructor or null\");\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.CommentForm = void 0;\r\nvar react_1 = __importDefault(__webpack_require__(/*! react */ \"react\"));\r\nvar CommentFormControlled_1 = __webpack_require__(/*! ./CommentFormControlled */ \"./src/shared/CommentForm/CommentFormControlled.tsx\");\r\nvar unstated_typescript_1 = __webpack_require__(/*! unstated-typescript */ \"unstated-typescript\");\r\nvar UnstatedContainer = /** @class */ (function (_super) {\r\n    __extends(UnstatedContainer, _super);\r\n    function UnstatedContainer() {\r\n        var _this = _super !== null && _super.apply(this, arguments) || this;\r\n        _this.state = {\r\n            value: 'Hello from Unstated!',\r\n        };\r\n        return _this;\r\n    }\r\n    UnstatedContainer.prototype.setValue = function (value) {\r\n        this.setState({ value: value });\r\n    };\r\n    return UnstatedContainer;\r\n}(unstated_typescript_1.Container));\r\nfunction CommentForm(_a) {\r\n    var type = _a.type;\r\n    function handleChange(value, event) {\r\n        value.setValue(event.target.value);\r\n    }\r\n    function handleSubmit(value) {\r\n        console.log('Submit: ', value.state.value);\r\n    }\r\n    return (react_1.default.createElement(unstated_typescript_1.Provider, null,\r\n        react_1.default.createElement(unstated_typescript_1.Subscribe, { to: [UnstatedContainer] }, function (value) { return (react_1.default.createElement(CommentFormControlled_1.CommentFormControlled, { value: value.state.value, buttonText: type === 'reply' ? 'Reply' : 'Comment', onChange: function (event) { return handleChange(value, event); }, onSubmit: function () { return handleSubmit(value); } })); })));\r\n}\r\nexports.CommentForm = CommentForm;\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/CommentFormContainer.tsx?");
+
+/***/ }),
+
+/***/ "./src/shared/CommentForm/CommentFormContainerEffector.tsx":
+/*!*****************************************************************!*\
+  !*** ./src/shared/CommentForm/CommentFormContainerEffector.tsx ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nvar __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });\r\n}) : (function(o, m, k, k2) {\r\n    if (k2 === undefined) k2 = k;\r\n    o[k2] = m[k];\r\n}));\r\nvar __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {\r\n    Object.defineProperty(o, \"default\", { enumerable: true, value: v });\r\n}) : function(o, v) {\r\n    o[\"default\"] = v;\r\n});\r\nvar __importStar = (this && this.__importStar) || function (mod) {\r\n    if (mod && mod.__esModule) return mod;\r\n    var result = {};\r\n    if (mod != null) for (var k in mod) if (k !== \"default\" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);\r\n    __setModuleDefault(result, mod);\r\n    return result;\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.CommentFormEffector = void 0;\r\nvar react_1 = __importStar(__webpack_require__(/*! react */ \"react\"));\r\nvar CommentFormControlled_1 = __webpack_require__(/*! ./CommentFormControlled */ \"./src/shared/CommentForm/CommentFormControlled.tsx\");\r\nvar effector_1 = __webpack_require__(/*! effector */ \"effector\");\r\nvar effector_react_1 = __webpack_require__(/*! effector-react */ \"effector-react\");\r\nvar updateComment = effector_1.createEvent();\r\nvar $comment = effector_1.createStore('Hello from Effector').on(updateComment, function (_, newValue) { return newValue; });\r\nfunction CommentFormEffector(_a) {\r\n    var type = _a.type;\r\n    // const [value, setTextValue] = useRecoilState(valueTextState);\r\n    var value = effector_react_1.useStore($comment);\r\n    function handleChange(event) {\r\n        console.log(event.target.value);\r\n        updateComment(event.target.value);\r\n    }\r\n    function handleSubmit() {\r\n        console.log('Submit: ', value);\r\n    }\r\n    react_1.useEffect(function () {\r\n        if (type === 'reply')\r\n            updateComment('Михаил Рогов, ');\r\n    }, []);\r\n    return (react_1.default.createElement(CommentFormControlled_1.CommentFormControlled, { value: value, buttonText: type === 'reply' ? 'Reply' : 'Comment', onChange: handleChange, onSubmit: handleSubmit }));\r\n}\r\nexports.CommentFormEffector = CommentFormEffector;\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/CommentFormContainerEffector.tsx?");
 
 /***/ }),
 
@@ -670,19 +682,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// Exports\n/* harmony defaul
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.CommentForm = void 0;\r\nvar CommentFormContainer_1 = __webpack_require__(/*! ./CommentFormContainer */ \"./src/shared/CommentForm/CommentFormContainer.tsx\");\r\nObject.defineProperty(exports, \"CommentForm\", { enumerable: true, get: function () { return CommentFormContainer_1.CommentForm; } });\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/index.ts?");
-
-/***/ }),
-
-/***/ "./src/shared/CommentForm/state.ts":
-/*!*****************************************!*\
-  !*** ./src/shared/CommentForm/state.ts ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.valueTextState = void 0;\r\nvar recoil_1 = __webpack_require__(/*! recoil */ \"recoil\");\r\nexports.valueTextState = recoil_1.atom({\r\n    key: 'valueTextState',\r\n    default: 'Привет из Recoil!', // default value (aka initial value)\r\n});\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/state.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nexports.CommentFormEffector = exports.CommentForm = void 0;\r\nvar CommentFormContainer_1 = __webpack_require__(/*! ./CommentFormContainer */ \"./src/shared/CommentForm/CommentFormContainer.tsx\");\r\nObject.defineProperty(exports, \"CommentForm\", { enumerable: true, get: function () { return CommentFormContainer_1.CommentForm; } });\r\nvar CommentFormContainerEffector_1 = __webpack_require__(/*! ./CommentFormContainerEffector */ \"./src/shared/CommentForm/CommentFormContainerEffector.tsx\");\r\nObject.defineProperty(exports, \"CommentFormEffector\", { enumerable: true, get: function () { return CommentFormContainerEffector_1.CommentFormEffector; } });\r\n\n\n//# sourceURL=webpack:///./src/shared/CommentForm/index.ts?");
 
 /***/ }),
 
@@ -1247,6 +1247,28 @@ eval("module.exports = require(\"compression\");\n\n//# sourceURL=webpack:///ext
 
 /***/ }),
 
+/***/ "effector":
+/*!***************************!*\
+  !*** external "effector" ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"effector\");\n\n//# sourceURL=webpack:///external_%22effector%22?");
+
+/***/ }),
+
+/***/ "effector-react":
+/*!*********************************!*\
+  !*** external "effector-react" ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"effector-react\");\n\n//# sourceURL=webpack:///external_%22effector-react%22?");
+
+/***/ }),
+
 /***/ "express":
 /*!**************************!*\
   !*** external "express" ***!
@@ -1368,17 +1390,6 @@ eval("module.exports = require(\"react-router-dom\");\n\n//# sourceURL=webpack:/
 
 /***/ }),
 
-/***/ "recoil":
-/*!*************************!*\
-  !*** external "recoil" ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"recoil\");\n\n//# sourceURL=webpack:///external_%22recoil%22?");
-
-/***/ }),
-
 /***/ "redux":
 /*!************************!*\
   !*** external "redux" ***!
@@ -1409,6 +1420,17 @@ eval("module.exports = require(\"redux-devtools-extension\");\n\n//# sourceURL=w
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"redux-thunk\");\n\n//# sourceURL=webpack:///external_%22redux-thunk%22?");
+
+/***/ }),
+
+/***/ "unstated-typescript":
+/*!**************************************!*\
+  !*** external "unstated-typescript" ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"unstated-typescript\");\n\n//# sourceURL=webpack:///external_%22unstated-typescript%22?");
 
 /***/ })
 
